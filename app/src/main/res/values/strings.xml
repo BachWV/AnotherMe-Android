@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RV World</string>
+    <string name="title_home">主页</string>
+    <string name="title_dashboard">浏览器</string>
+    <string name="title_notifications">设置</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_choose_city">ChooseCity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="show_user_profile">展示个人Profile</string>
+    <string name="choose_city">选择城市</string>
+    <string name="get_promission">获取定位权限</string>
+
+</resources>
