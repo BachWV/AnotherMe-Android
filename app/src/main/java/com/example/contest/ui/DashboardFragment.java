@@ -249,8 +249,8 @@ public class DashboardFragment extends Fragment {
 
                 }
             } else {
-                if(i<CommonVar.cityNameWithAnchorPoints.size()) {
-                    CityNameWithAnchorPoint ans = CommonVar.cityNameWithAnchorPoints.get(i);
+                if(i-1<CommonVar.cityNameWithAnchorPoints.size()) {
+                    CityNameWithAnchorPoint ans = CommonVar.cityNameWithAnchorPoints.get(i-1);
                     replaceurl = UrlTools.buildCaiyun(ans.longitude, ans.latitude);
                     //Toast.makeText(view.getContext(), ans.longitude+" "+ans.latitude+"",Toast.LENGTH_LONG).show();
                 }

@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class CheckPermissionsActivity extends FragmentActivity {
     //是否需要检测后台定位权限，设置为true时，如果用户没有给予后台定位权限会弹窗提示
-    private boolean needCheckBackLocation = false;
+    private boolean needCheckBackLocation = true;
     //如果设置了target > 28，需要增加这个权限，否则不会弹出"始终允许"这个选择框
     private static String BACKGROUND_LOCATION_PERMISSION = "android.permission.ACCESS_BACKGROUND_LOCATION";
     /**

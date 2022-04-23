@@ -1,5 +1,6 @@
 package com.example.contest.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -27,10 +28,12 @@ import com.example.contest.Utils.algorithm.TrajectorySimulator.TrajectorySimulat
 import com.example.contest.Utils.algorithm.geography.Point;
 import com.example.contest.Utils.algorithm.stayPoint.StayPoint;
 import com.example.contest.Utils.algorithm.stayPoint.StayPointwithType;
+import com.example.contest.Utils.file.WriteToFile;
 import com.example.contest.Utils.tools.http.MappingTools;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -101,17 +104,15 @@ public class HomeFragment extends Fragment {
     void getKcityName(int k){
         // get K virtual city names
         CommonVar.chosenName.clear();
-
+        CommonVar.cityNameWithAnchorPoints.clear();
         for(int i = 0; i<k; i++){
             CommonVar.chosenName.add(CommonVar.cityName.get(i));
-        }
-        Log.d("chosenCityName",""+CommonVar.chosenName);
-        // CommonVar.cityNameWithAnchorPoints.clear();
-        for(int i=0;i<CommonVar.chosenName.size();i++) {
             String ss = CommonVar.chosenName.get(i);
             Log.e("cityname", ss);
             MappingTools.getAnchorPoint(ss, "141201");
         }
+        Log.d("chosenCityName",""+CommonVar.chosenName);
+        Log.e("cityNameWithAnchorPoints",CommonVar.cityNameWithAnchorPoints.toString());
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -150,97 +151,7 @@ public class HomeFragment extends Fragment {
         btn_start_init.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                Log.e("cityNameWithAnchorPoints",CommonVar.cityNameWithAnchorPoints.toString());
-
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            //get staypoints' types
-                            try {
-                                CommonVar.spwType.clear();
-                                for(int i=0;i<CommonVar.sp.size();i++){
-                                    StayPoint sp1=CommonVar.sp.get(i);
-                                    StayPointwithType spwt=new StayPointwithType(sp1);
-
-
-                                    CommonVar.spwType.add(MappingTools.getTypeSynchronized(sp1,i));
-
-                                }
-                                Looper.prepare();
-                                Toast.makeText(getContext(),"成功获取type",Toast.LENGTH_SHORT).show();
-                                //get virtual staypoints (mapping)
-                                for(int i=0;i<CommonVar.cityNameWithAnchorPoints.size();i++) {
-                                    MappingTools.usetypegetPoint(getContext(), CommonVar.spwType,CommonVar.cityNameWithAnchorPoints.get(i));
-                                }
-
-                                Toast.makeText(getContext(),"成功获取virtual",Toast.LENGTH_SHORT).show();
-
-                           for(int index = 0; index< MappingTools.KvirtualCity_has_allpoint.size(); index++) {
-                               MappingTools.caltruepoint(getContext(),CommonVar.spwType, MappingTools.KvirtualCity_has_allpoint.get(index));
-                           }
-                           Toast.makeText(getContext(),"成功计算virtual",Toast.LENGTH_SHORT).show();
-
-                           Log.e("pipline", "begin");
-
-                           ArrayList<Point> pois = new ArrayList<Point>();
-                           for (StayPoint stayPoint : MappingTools.KvirtualmindisPoint.get(0)) {
-                               pois.add(Point.phrasePoint(stayPoint));
-                           }
-                           ArrayList<Point> points=CommonVar.points;
-
-                           TrajectorySimulator simulator = new TrajectorySimulator(points, pois,60,2);
-                           CommonVar.trajectory= simulator.trajectorySimulate();
-                           Log.e("pipline", "end");
-                           Toast.makeText(getContext(),"成功生成轨迹",Toast.LENGTH_LONG).show();
-
-
-
-                           File externalFilesDir =  Environment.getExternalStorageDirectory();;
-                           Log.d("gatsby", "externalFilesDirPath->" + externalFilesDir);
-
-
-                                String fileName = "0";
-                                File file = null;
-                                for (int i = 1; i <= 200; i++) {
-                                   // out=openFileOutput("profile", Context.MODE_PRIVATE);
-                                    file = new File("data/data/com.example.contest/files", fileName);
-                                    if (file.exists()) {
-                                        fileName = String.valueOf(i);
-                                    } else {
-                                        break;
-                                    }
-                                }
-
-                                FileOutputStream fos = null;
-                                try {
-                                    fos = new FileOutputStream(file);
-
-                                    //获取要写出的文件内容
-                                    StringBuilder content = new StringBuilder();
-                                    for (Point p:CommonVar.trajectory) {
-                                        content.append(String.valueOf(p.latitude)+","+String.valueOf(p.longitude)+"\n");
-                                    }
-                                    Log.d("string",content.toString());
-                                    fos.write(content.toString().getBytes("UTF-8"));
-                                    if (fos != null) {
-                                            fos.close();
-                                    }
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                           // Looper.loop();
-                        }
-                    }).start();
-
-                   // GPStoGaode.getPoint(getContext());
-
-
+                showWhiteDialog();
             }
         });
         btn_openfile.setOnClickListener(new View.OnClickListener() {
@@ -250,9 +161,133 @@ public class HomeFragment extends Fragment {
             }
         });
         tv_num.setText(CommonVar.num_of_k_virtual_city+" ");
+/**
+ * 预加载保存的staypoint
+ */
+        FileInputStream in=null;
+        try {
+            in=getContext().openFileInput("profile");
+            WriteToFile.showRealPoints(in);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    /**
+     * 进度条Dialog
+     */
+    private void showWhiteDialog(){
+        /* @setProgress 设置初始进度
+         * @setProgressStyle 设置样式（水平进度条）
+         * @setMax 设置进度最大值
+         */
+        final int Max = 100;
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setProgress(0);
+
+        progressDialog.setTitle("正在初始化");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setMax(Max);
+        progressDialog.show();
+        /**
+         * 开个线程
+         */
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int pro = 0;
+                        //get staypoints' types
+                try {
+                    CommonVar.spwType.clear();
+                        for(int i=0;i<CommonVar.sp.size();i++){
+                            StayPoint sp1=CommonVar.sp.get(i);
+                               // StayPointwithType spwt=new StayPointwithType(sp1);
+
+
+                                CommonVar.spwType.add(MappingTools.getTypeSynchronized(sp1,i));
+                            }
+                        pro+=20;
+                        progressDialog.setProgress(pro);
+                            Looper.prepare();
+                            //Toast.makeText(getContext(),"成功获取type",Toast.LENGTH_SHORT).show();
+                            //get virtual staypoints (mapping)
+                            for(int i=0;i<CommonVar.cityNameWithAnchorPoints.size();i++) {
+                                MappingTools.usetypegetPoint(getContext(), CommonVar.spwType,CommonVar.cityNameWithAnchorPoints.get(i));
+                            }
+
+                        pro+=20;
+                        progressDialog.setProgress(pro);
+                            //Toast.makeText(getContext(),"成功获取virtual",Toast.LENGTH_SHORT).show();
+                        for(int index = 0; index< MappingTools.KvirtualCity_has_allpoint.size(); index++) {
+                                MappingTools.caltruepoint(getContext(),CommonVar.spwType, MappingTools.KvirtualCity_has_allpoint.get(index));
+                            }
+
+                        pro+=20;
+                        progressDialog.setProgress(pro);
+                            Toast.makeText(getContext(),"成功计算virtual",Toast.LENGTH_SHORT).show();
+
+                            Log.e("pipline", "begin");
+
+                            ArrayList<Point> pois = new ArrayList<Point>();
+                            for (StayPoint stayPoint : MappingTools.KvirtualmindisPoint.get(0)) {
+                                pois.add(Point.phrasePoint(stayPoint));
+                            }
+                            ArrayList<Point> points=CommonVar.points;
+
+                            TrajectorySimulator simulator = new TrajectorySimulator(points, pois,60,2);
+                            CommonVar.trajectory= simulator.trajectorySimulate();
+                            Log.e("pipline", "end");
+                            //Toast.makeText(getContext(),"成功生成轨迹",Toast.LENGTH_LONG).show();
+                        pro+=20;
+                        progressDialog.setProgress(pro);
+
+                            File externalFilesDir =  Environment.getExternalStorageDirectory();;
+                            Log.d("gatsby", "externalFilesDirPath->" + externalFilesDir);
+
+
+                            String fileName = "0";
+                            File file = null;
+                            for (int i = 1; i <= 200; i++) {
+                                // out=openFileOutput("profile", Context.MODE_PRIVATE);
+                                file = new File("data/data/com.example.contest/files", fileName);
+                                if (file.exists()) {
+                                    fileName = String.valueOf(i);
+                                } else {
+                                    break;
+                                }
+                            }
+
+                            FileOutputStream fos = null;
+                            try {
+                                fos = new FileOutputStream(file);
+
+                                //获取要写出的文件内容
+                                StringBuilder content = new StringBuilder();
+                                for (Point p:CommonVar.trajectory) {
+                                    content.append(String.valueOf(p.latitude)+","+String.valueOf(p.longitude)+"\n");
+                                }
+                                Log.d("string",content.toString());
+                                fos.write(content.toString().getBytes("UTF-8"));
+                                if (fos != null) {
+                                    fos.close();
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            pro+=20;
 
 
 
+                        progressDialog.setProgress(pro);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                progressDialog.cancel();//达到最大就消失
+            }
+
+        }).start();
     }
 
     @Override

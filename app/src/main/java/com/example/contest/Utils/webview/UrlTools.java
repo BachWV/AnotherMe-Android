@@ -58,7 +58,7 @@ public class UrlTools {
         String url="";
         Random r=new Random();
 
-        url="http://www.caiyunapp.com/wx_share/?"+r.nextInt(23)+"?#"+splong+","+splan+"/";
+        url="http://www.caiyunapp.com/wx_share/?"+r.nextInt(100)+"?#"+splong+","+splan+"/";
 
         return url;
     }
@@ -75,7 +75,7 @@ public class UrlTools {
         Random r=new Random();
         lanti=30+r.nextDouble();
         longti=103+r.nextDouble();
-       url.append(lanti+"&longitude="+longti);
+        url.append(lanti+"&longitude="+longti);
         Log.d("url replace",url.toString());
         return url.toString();
     }

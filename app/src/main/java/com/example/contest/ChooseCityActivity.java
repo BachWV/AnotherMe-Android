@@ -20,7 +20,6 @@ import android.widget.TextView;
 public class ChooseCityActivity extends AppCompatActivity {
 
     private Button quit;
-//private LinearLayout linearChooseCity;
 private FrameLayout linearChooseCity;
 private Button[] et=new Button[16];
 private TextView tv;
@@ -75,6 +74,7 @@ public static int leastnum;
         });
 
     }
+
 
 
 }
