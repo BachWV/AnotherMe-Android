@@ -17,7 +17,7 @@ public class ShapeObfuscation {
             Point p_xn = trajectory.get(xn);
             Point p_yn = trajectory.get(yn);
             double[] origin_point = {0, 0};
-            double[] p_xn_cart = Calculations.Geo2Cart(inflection_point, p_yn);
+            double[] p_xn_cart = Calculations.Geo2Cart(inflection_point, p_xn);
             double[] p_yn_cart = Calculations.Geo2Cart(inflection_point, p_yn);
             double[] center_point = new double[2]; //平分线中点坐标
 

@@ -11,11 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.amap.api.maps.model.LatLng;
 import com.example.contest.AMapActivity;
 import com.example.contest.CheckPermissionsActivity;
 import com.example.contest.ChooseCityActivity;
 import com.example.contest.R;
 import com.example.contest.UserProfileActivity;
+import com.example.contest.Utils.algorithm.TrajectorySimulator.TrajectorySimulator;
+import com.example.contest.Utils.algorithm.geography.Point;
+
+import java.util.ArrayList;
 
 public class settingFragment extends Fragment {
 
@@ -25,6 +30,7 @@ public class settingFragment extends Fragment {
     private TextView tvchoosecity;
     private TextView tvshowmap;
     private TextView tvgetpromission;
+    public ArrayList<Point> trajectory;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -34,7 +40,12 @@ public class settingFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         tvgetpromission=getActivity().findViewById(R.id.tv_getPromission);
+
+
+
+
         tvgetpromission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

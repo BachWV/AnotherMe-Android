@@ -49,14 +49,14 @@ public class GetNavTrajectories {//给定一个POI数组，返回他们的导航
         for (int i = 0; i < steps.size(); i++) {
             JSONObject step = steps.getJSONObject(i);
             String polyline = step.getString("polyline");
-            Log.e("json", "json");
+//            Log.e("json", "json");
             trajectory.addAll(parsePolyline(polyline));
         }
 
         return trajectory;
     }
 
-    public static ArrayList<Point> get2points(Point origin, Point destination, int transport_type, String key) {
+    public static ArrayList<Point> get2points(Point origin, Point destination, int transport_type, String key)throws Exception {
         String url = "https://restapi.amap.com/v3/direction/";
         switch (transport_type) {
             case 0:
@@ -90,6 +90,7 @@ public class GetNavTrajectories {//给定一个POI数组，返回他们的导航
             response = HttpRequest.get(url);
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         }
 
         ArrayList<Point> path = new ArrayList<>();
@@ -102,7 +103,7 @@ public class GetNavTrajectories {//给定一个POI数组，返回他们的导航
         return path;
     }
 
-    public static ArrayList<Point> getNavTrajectories(ArrayList<Point> points, int transport_type) {
+    public static ArrayList<Point> getNavTrajectories(ArrayList<Point> points, int transport_type) throws Exception{
         ArrayList<Point> trajectory = new ArrayList<>();
         for (int i = 0; i < points.size() - 1; i++) {
             ArrayList<Point> path = get2points(points.get(i), points.get(i + 1), transport_type, "2d7f78022ae107ed310c5c23a4d89ef7");

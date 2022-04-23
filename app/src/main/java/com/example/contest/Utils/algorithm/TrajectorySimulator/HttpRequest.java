@@ -24,7 +24,7 @@ public class HttpRequest {
             //通过execute()方法获得请求响应的Response对象
             Response response = call.execute();
             if (response.isSuccessful()) {
-                Log.e("response", response.toString());
+//                Log.e("response", response.toString());
 
                 return response;
             }else{

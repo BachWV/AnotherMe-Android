@@ -27,10 +27,9 @@ public class SpeedObfuscation {
         double[] alpha; //单位方向向量
         alpha = new double[]{navP2_cart[0] / dis, navP2_cart[1] / dis};
 
-        for (advance_dis = 0, v = speedSeq.get(i); advance_dis < dis;  v = speedSeq.get(i), i = Math.min(i + 1, speedSeq.size() - 1)) {
-            advance_dis += v * insertInterval;
+        for ( v = speedSeq.get(i),advance_dis = v * insertInterval; advance_dis < dis;
+              v = speedSeq.get(i), i = Math.min(i + 1, speedSeq.size() - 1),advance_dis += v * insertInterval) {
             double[] insertP = {alpha[0] * advance_dis, alpha[1] * advance_dis};
-
             trajectory.add(Calculations.Cart2Geo(navP1, insertP));
         }
         trajectory.add(navP2);
@@ -49,7 +48,6 @@ public class SpeedObfuscation {
             speed_index = Math.min(speedSeq.size() - 1, speed_index + inserted_points.size());
             trajectory.addAll(inserted_points);
             inflection_index.add(Math.max(trajectory.size() - 1, 0));
-
         }
         set.put("trajectory", trajectory);
         set.put("inflection_index", inflection_index);

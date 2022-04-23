@@ -60,16 +60,26 @@ public class TrajectorySimulator { //输入轨迹点和对应轨迹的POI，输�
 
 
         transport_type=2;
-        ArrayList<Point> navPoints = GetNavTrajectories.getNavTrajectories(pois, transport_type);
-        return navPoints;
+        ArrayList<Point> navPoints=new ArrayList<>();
+        try{
+            navPoints = GetNavTrajectories.getNavTrajectories(pois, transport_type);
+        }catch (Exception e){
+            return navPoints;
+        }
+//        return  navPoints;
 
-//        SpeedObfuscation speedObfuscation = new SpeedObfuscation(insertInterval, speedSeq);
-//
-//        HashMap<String, List> set = speedObfuscation.speedObfuscation(navPoints);
-//
-//        ArrayList<Point> trajectory = (ArrayList<Point>) set.get("trajectory");
-//        ArrayList<Integer> inflection_index = (ArrayList<Integer>) set.get("inflection_index");
-//
-//        return ShapeObfuscation.shapeObfuscation(trajectory, inflection_index, k_shapeObfuscation);
+        SpeedObfuscation speedObfuscation = new SpeedObfuscation(insertInterval, speedSeq);
+
+        HashMap<String, List> set = speedObfuscation.speedObfuscation(navPoints);
+
+
+        ArrayList<Point> trajectory = (ArrayList<Point>) set.get("trajectory");
+
+
+        ArrayList<Integer> inflection_index = (ArrayList<Integer>) set.get("inflection_index");
+
+        trajectory=ShapeObfuscation.shapeObfuscation(trajectory, inflection_index, k_shapeObfuscation);
+
+        return trajectory;
     }
 }

@@ -66,8 +66,8 @@ public class Calculations {
         double x = dis * Math.sin(theta2);
         double y = dis * Math.sin(theta1);
         double[] coor = new double[2];
-        coor[0] = point.longitude > point.longitude ? x : -x;
-        coor[1] = point.latitude > point.latitude ? y : -y;
+        coor[0] = point.longitude > origin.longitude ? x : -x;
+        coor[1] = point.latitude > origin.latitude ? y : -y;
         return coor;
     }
 
