@@ -58,10 +58,11 @@ public class TrajectorySimulator { //输入轨迹点和对应轨迹的POI，输�
             transport_type = 2;
         }
 
+
         transport_type=2;
         ArrayList<Point> navPoints = GetNavTrajectories.getNavTrajectories(pois, transport_type);
         return navPoints;
-//
+
 //        SpeedObfuscation speedObfuscation = new SpeedObfuscation(insertInterval, speedSeq);
 //
 //        HashMap<String, List> set = speedObfuscation.speedObfuscation(navPoints);
