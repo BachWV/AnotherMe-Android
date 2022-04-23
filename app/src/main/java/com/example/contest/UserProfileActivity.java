@@ -168,81 +168,17 @@ public class UserProfileActivity extends AppCompatActivity {
         showdata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 FileInputStream in=null;
-                BufferedReader reader=null;
-                StringBuilder content=new StringBuilder();
-
-                try{
-                    in=openFileInput("profile");
-                   reader=new BufferedReader(new InputStreamReader(in));
-                   String line="";
-                   while((line=reader.readLine())!=null){
-                       content.append(line);
-                   };
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        reader.close();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                JSONObject js;
-                String name;
-                String type;
                 try {
-                    js = new JSONObject(content.toString());
-                    name = js.getString("pid");
-                    type = js.getString("type");
-                    JSONArray pointsarray = js.getJSONArray("AllRealpoints");
-                    int lenofpointsarray = pointsarray.length();
-                    ArrayList<Point> points = new ArrayList<>();
-                    for (int i = 0; i < lenofpointsarray; i++) {
-                        double longitude = pointsarray.getJSONObject(i).getDouble("longitude");
-                        double lan = pointsarray.getJSONObject(i).getDouble("latitude");
+                    in=openFileInput("profile");
+                    WriteToFile.showRealPoints(in);
 
-                        points.add(new Point(longitude, lan));
-                        Log.d("out points", "+" + longitude + " " + lan);
-
-
-                    }
-                    if (CommonVar.points == null || CommonVar.points.size() == 0)
-                        CommonVar.points.addAll(points);
-
-
-                    JSONObject poi = js.getJSONObject("stay_point");
-                    int numarray = poi.getInt("spnum");
-                    JSONArray array = poi.getJSONArray("spvalue");
-
-
-                    ArrayList<StayPoint> listsp=new ArrayList<>();
-
-                    for(int i=0;i<numarray;i++){
-                        double longitude=array.getJSONObject(i).getDouble("longitude");
-                        double lan=array.getJSONObject(i).getDouble("latitude");
-                        long arrive=array.getJSONObject(i).getLong("arrive");
-                        long leave=array.getJSONObject(i).getLong("leave");
-                        StayPoint stayPoint=new StayPoint(longitude,lan,arrive,leave);
-
-                        listsp.add(stayPoint);
-                        Log.d("out", "+" + longitude + " " + lan);
-                    }
-                    if (CommonVar.sp == null || CommonVar.sp.size() == 0)
-                        CommonVar.sp.addAll(listsp);
-
-                    Log.d("jsobject", name);
-                    Toast.makeText(getApplicationContext(), "加载成功", Toast.LENGTH_LONG).show();
-                    Log.d("toast down", "00");
-
-
-                } catch (JSONException e) {
+                }catch (Exception e){
                     e.printStackTrace();
                 }
-                // Log.d("show data",name);
+
+
+                Toast.makeText(getApplicationContext(), "加载成功", Toast.LENGTH_LONG).show();
             }
         });
 
