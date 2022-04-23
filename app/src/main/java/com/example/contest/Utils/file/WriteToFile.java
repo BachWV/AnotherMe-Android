@@ -34,7 +34,7 @@ public class WriteToFile {
             String line="";
             while((line=reader.readLine())!=null){
                 content.append(line);
-            };
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,16 +145,9 @@ public class WriteToFile {
 
             writer=new BufferedWriter(new OutputStreamWriter(out));
             writer.write(js.toString());
-
+            if(writer!=null) writer.close();
         }catch (IOException e){
             e.printStackTrace();
-        }finally {
-            try{
-                if(writer!=null) writer.close();
-
-            }catch (IOException e){
-                e.printStackTrace();
-            }
         }
 
     }
