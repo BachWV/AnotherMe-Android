@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
        // button_confire_num = (Button) getActivity().findViewById(R.id.btn_confirm_num);
         tv_num = (TextView) getActivity().findViewById(R.id.tv_num);
-
+        tv_num.setText(CommonVar.num_of_k_virtual_city+" ");
         et_file_name = (EditText) getActivity().findViewById(R.id.text_home);
         btn_openfile = (Button) getActivity().findViewById(R.id.btn_openfile);
         btn_start_init = (Button) getActivity().findViewById(R.id.start_init);
@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(CommonVar.num_of_k_virtual_city<10) {
+                if(CommonVar.num_of_k_virtual_city<6) {
                     CommonVar.num_of_k_virtual_city++;
                     getKcityName(CommonVar.num_of_k_virtual_city);
                 }
@@ -160,7 +160,7 @@ public class HomeFragment extends Fragment {
                 openfile();
             }
         });
-        tv_num.setText(CommonVar.num_of_k_virtual_city+" ");
+
 /**
  * 预加载保存的staypoint
  */

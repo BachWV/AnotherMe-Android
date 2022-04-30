@@ -71,23 +71,24 @@
 
     </FrameLayout>
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:id="@+id/hsv"
-            android:layout_gravity="bottom"
-            android:layout_height="100dp">
+<!--        <HorizontalScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:id="@+id/hsv"-->
+<!--           -->
+<!--            android:layout_height="100dp">-->
             <LinearLayout
                 android:layout_width="match_parent"
 
-                android:layout_height="match_parent"
+                android:layout_height="100dp"
                 android:orientation="horizontal"
+                android:layout_gravity="bottom"
                 android:id="@+id/l">
 
             </LinearLayout>
 
 
 
-        </HorizontalScrollView>
+<!--        </HorizontalScrollView>-->
 
 
 

@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class CommonVar {
     public static String token="";
     public static String usr_id="";
-    public static int num_of_k_virtual_city =5;
+    public static int num_of_k_virtual_city =3;
     public static ArrayList<String> cityName=new ArrayList<String>(Arrays.asList(new String[]{
             "成都","上海","广州","深圳","武汉",
             "南京","杭州","惠州","厦门","海口"

@@ -8,10 +8,12 @@ import android.os.Bundle;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.PolylineOptions;
 import com.example.contest.Common.CommonVar;
@@ -49,14 +51,20 @@ aMap.getUiSettings().setMyLocationButtonEnabled(true);//设置默认定位按钮
 //            for(Point p:MainActivity.trajectory_test){
 //                latLngs.add(new LatLng(p.latitude,p.longitude));
 //            }
+            ArrayList<MarkerOptions> almo=new ArrayList<>();
 
+      //      new MarkerOptions().position(latLngs).title("北京").snippet("DefaultMarker")
             if(CommonVar.trajectory!=null&&CommonVar.trajectory.size()!=0){
                 for(Point p:CommonVar.trajectory){
-                    latLngs.add(new LatLng(p.latitude,p.longitude));
+                 //   latLngs.add();
+                 //   LatLng latLng = new LatLng(39.906901,116.397972);
+                    almo.add(new MarkerOptions().position(new LatLng(p.latitude,p.longitude)));
                 }
             }
-            aMap.addPolyline(new PolylineOptions().
-                    addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));
+            aMap.addMarkers(almo,false);
+            Log.d("draw","succeed");
+          //  aMap.addPolyline(new PolylineOptions().
+                 //   addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));
         }
     @Override
     protected void onDestroy() {
