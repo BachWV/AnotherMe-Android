@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.AMapOptions;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
@@ -25,14 +29,31 @@ import java.util.List;
 
 public class AMapActivity extends AppCompatActivity {
         private MapView mMapView;
+        private RelativeLayout relativeLayout;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_amap);
 
-             mMapView = (MapView) findViewById(R.id.map);
+            setContentView(R.layout.activity_amap);
+            relativeLayout = (RelativeLayout) findViewById(R.id.amap);
+
+            CameraPosition LUJIAZUI =null;
+            if(CommonVar.trajectory!=null&&CommonVar.trajectory.size()!=0){
+
+
+                Point p=CommonVar.trajectory.get(0);
+                LatLng startPosition=new LatLng(p.latitude,p.longitude);
+                LUJIAZUI=new CameraPosition.Builder()
+                        .target(startPosition).zoom(18).bearing(0).tilt(30).build();
+            }
+            AMapOptions aOptions = new AMapOptions();
+
+            aOptions.camera(LUJIAZUI);
+             mMapView = new MapView(this,aOptions);
             mMapView.onCreate(savedInstanceState);// 此方法必须重写
             AMap aMap = mMapView.getMap();
+//设置中心点
+
 
             aMap.setTrafficEnabled(true);// 显示实时交通状况
             //地图模式可选类型：MAP_TYPE_NORMAL,MAP_TYPE_SATELLITE,MAP_TYPE_NIGHT
@@ -62,6 +83,9 @@ aMap.getUiSettings().setMyLocationButtonEnabled(true);//设置默认定位按钮
                 }
             }
             aMap.addMarkers(almo,false);
+             LinearLayout.LayoutParams mParams; mParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT);
+            relativeLayout.addView(mMapView, mParams);
             Log.d("draw","succeed");
           //  aMap.addPolyline(new PolylineOptions().
                  //   addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));

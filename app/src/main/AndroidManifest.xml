@@ -33,7 +33,14 @@
         android:usesCleartextTraffic="true"
         tools:ignore="HardcodedDebugMode">
         <activity
-            android:name=".AMapActivity" />
+            android:name=".ChooseKVirtualActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseFileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_choose_file"
+            android:theme="@style/Theme.Contest.NoActionBar" />
+        <activity android:name=".AMapActivity" />
         <activity android:name=".CheckPermissionsActivity" />
         <activity
             android:name=".UserProfileActivity"

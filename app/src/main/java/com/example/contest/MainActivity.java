@@ -23,9 +23,11 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.contest.databinding.ActivityMainBinding;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -79,7 +81,12 @@ public class MainActivity extends AppCompatActivity {
 
 //初始化定位
 
+
+
+
 //设置定位回调监听
+
+
         mLocationClient.setLocationListener(new AMapLocationListener() {
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
@@ -94,7 +101,16 @@ public class MainActivity extends AppCompatActivity {
 
                         } else {
                             try {
-                                out = openFileOutput("data001", Context.MODE_APPEND);
+
+                               // File[] files =getApplicationContext().getFilesDir().listFiles();
+                                SimpleDateFormat formatter =new SimpleDateFormat("MM月dd日 HH时");
+
+                                long nowtime=System.currentTimeMillis();
+                                Date curDate=new Date((nowtime));
+                                String nowFormat=formatter.format(curDate);
+                                out = openFileOutput(nowFormat, Context.MODE_APPEND);
+
+
                                 writer = new BufferedWriter(new OutputStreamWriter(out));
                                 for (int i = 0; i < 10; i++) {
 
@@ -122,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                                     E.printStackTrace();
                                 }
                             }
-                            Log.d("db", "add down!");
+                            Log.d("write", "add down!");
                             wirteToFile.clear();
                         }
 
@@ -153,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             mLocationClient.startLocation();
         }
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        mLocationOption.setInterval(5000);
+        mLocationOption.setInterval(3000);
         mLocationOption.setNeedAddress(true);
         mLocationClient.setLocationOption(mLocationOption);
         mLocationClient.startLocation();

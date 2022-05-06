@@ -136,13 +136,8 @@ public class UserProfileActivity extends AppCompatActivity {
         genvitual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    //UseTypeGetsCityPois.usetypegetPoint(getApplicationContext());
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                Intent intent=new Intent(getApplicationContext(), ChooseKVirtualActivity.class);
+                startActivity(intent);
 
 
             }
@@ -172,6 +167,9 @@ public class UserProfileActivity extends AppCompatActivity {
                 try {
                     in=openFileInput("profile");
                     WriteToFile.showRealPoints(in);
+
+                    in=openFileInput("vup");
+                    WriteToFile.showVirtulPoints(in);
 
                 }catch (Exception e){
                     e.printStackTrace();

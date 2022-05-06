@@ -15,6 +15,7 @@ import com.amap.api.maps.model.LatLng;
 import com.example.contest.AMapActivity;
 import com.example.contest.CheckPermissionsActivity;
 import com.example.contest.ChooseCityActivity;
+import com.example.contest.ChooseFileActivity;
 import com.example.contest.R;
 import com.example.contest.UserProfileActivity;
 import com.example.contest.Utils.algorithm.TrajectorySimulator.TrajectorySimulator;
@@ -73,7 +74,7 @@ public class settingFragment extends Fragment {
         tvshowmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), AMapActivity.class);//打开新activity：
+                Intent intent=new Intent(getContext(), ChooseFileActivity.class);//打开新activity：
                 startActivity(intent);
             }
         });

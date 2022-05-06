@@ -168,6 +168,7 @@ public class HomeFragment extends Fragment {
         try {
             in=getContext().openFileInput("profile");
             WriteToFile.showRealPoints(in);
+            Log.d("预加载保存的staypoint","succeed!");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -241,40 +242,48 @@ public class HomeFragment extends Fragment {
                             //Toast.makeText(getContext(),"成功生成轨迹",Toast.LENGTH_LONG).show();
                         pro+=20;
                         progressDialog.setProgress(pro);
+                    FileOutputStream out = null;
+//                            File externalFilesDir =  Environment.getExternalStorageDirectory();;
+//                            Log.d("gatsby", "externalFilesDirPath->" + externalFilesDir);
+//
+//
+//                            String fileName = "0";
+//                            File file = null;
+//                            for (int i = 1; i <= 200; i++) {
+//                                // out=openFileOutput("profile", Context.MODE_PRIVATE);
+//                                file = new File("data/data/com.example.contest/files", fileName);
+//                                if (file.exists()) {
+//                                    fileName = String.valueOf(i);
+//                                } else {
+//                                    break;
+//                                }
+//                            }
+//
+//                            FileOutputStream fos = null;
+//                            try {
+//                                fos = new FileOutputStream(file);
+//
+//                                //获取要写出的文件内容
+//                                StringBuilder content = new StringBuilder();
+//                                for (Point p:CommonVar.trajectory) {
+//                                    content.append(String.valueOf(p.latitude)+","+String.valueOf(p.longitude)+"\n");
+//                                }
+//                                Log.d("string",content.toString());
+//                                fos.write(content.toString().getBytes("UTF-8"));
+//                                if (fos != null) {
+//                                    fos.close();
+//                                }
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+                    try {
+                        out=getContext().openFileOutput("vup", Context.MODE_PRIVATE);
+                        WriteToFile.saveKVirtualPoints(out);
 
-                            File externalFilesDir =  Environment.getExternalStorageDirectory();;
-                            Log.d("gatsby", "externalFilesDirPath->" + externalFilesDir);
 
-
-                            String fileName = "0";
-                            File file = null;
-                            for (int i = 1; i <= 200; i++) {
-                                // out=openFileOutput("profile", Context.MODE_PRIVATE);
-                                file = new File("data/data/com.example.contest/files", fileName);
-                                if (file.exists()) {
-                                    fileName = String.valueOf(i);
-                                } else {
-                                    break;
-                                }
-                            }
-
-                            FileOutputStream fos = null;
-                            try {
-                                fos = new FileOutputStream(file);
-
-                                //获取要写出的文件内容
-                                StringBuilder content = new StringBuilder();
-                                for (Point p:CommonVar.trajectory) {
-                                    content.append(String.valueOf(p.latitude)+","+String.valueOf(p.longitude)+"\n");
-                                }
-                                Log.d("string",content.toString());
-                                fos.write(content.toString().getBytes("UTF-8"));
-                                if (fos != null) {
-                                    fos.close();
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
 
                             pro+=20;
 

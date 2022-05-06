@@ -46,6 +46,5 @@ public class Pipline {
         }catch (Exception e){
             e.printStackTrace();
         }
-        Log.e("123","123");
     }
 }
