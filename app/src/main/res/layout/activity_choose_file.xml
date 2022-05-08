@@ -14,20 +14,29 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:id="@+id/tv_file"
-        android:text="dsdsad"
+        android:text="选择轨迹文件"
+        android:textSize="18pt"
+        android:gravity="center"
         >
 
 
     </TextView>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/choosefile_line"
-        android:orientation="vertical"
-        >
+        android:layout_height="600dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/choosefile_line"
+            android:orientation="vertical"
+            >
 
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>

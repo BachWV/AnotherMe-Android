@@ -9,60 +9,59 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.example.contest.Common.CommonVar;
 import com.example.contest.Utils.algorithm.geography.Point;
+import com.example.contest.Utils.button.buttonCityOnClickListener;
 import com.example.contest.Utils.file.WriteToFile;
+import com.example.contest.Utils.tools.http.MappingTools;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class ChooseKVirtualActivity extends AppCompatActivity {
-
-    private TextView tv;
-    private TextView[] bts = new TextView[10];
-    private LinearLayout linearLayout;
-
+/**
+ * 打开浏览器
+ * */
+public class ChooseVirtualActivity extends AppCompatActivity {
+    private Button[] et=new Button[16];
+    private FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_kvirtual);
-        tv = findViewById(R.id.tv_ddd);
+        setContentView(R.layout.activity_choose_virtual);
 
-        linearLayout = findViewById(R.id.choosekv_line);
-        LinearLayout.LayoutParams btParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        frameLayout=findViewById(R.id.linearChooseProfile);
 
         FileInputStream in=null;
+        //读取vup文件实时初始化
         ArrayList<String> kvirtual=new ArrayList<>();
         try {
 
 
             in=openFileInput("vup");
-            kvirtual=WriteToFile.showVirtulPoints(in);
+            kvirtual= WriteToFile.showVirtulPoints(in);
             Log.d("kvirtual",kvirtual.toString());
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        for (int i = 0; i < kvirtual.size(); i++) {
-            bts[i] = new TextView(getApplicationContext());
-            bts[i].setId(4000 + i);
 
+        RelativeLayout.LayoutParams btParams = new  RelativeLayout.LayoutParams (ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        for(int i = 0; i< kvirtual.size(); i++){
             JSONObject js;
             StringBuilder sb=new StringBuilder();
+            String cityName="";
             ArrayList<Point> points = new ArrayList<Point>();
+            String kvitual_one_city=kvirtual.get(i);
             try {
-                js = new JSONObject(kvirtual.get(i).toString());
-                String cityName=js.getString("cityName");
+                js = new JSONObject(kvitual_one_city);
+                cityName=js.getString("cityName");
                 JSONArray jsonArray=js.getJSONArray("one_city_poi");
                 sb.append("城市名："+cityName+"\n");
                 sb.append("虚拟映射点：\n");
@@ -81,28 +80,28 @@ public class ChooseKVirtualActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             Log.d("kvirtual",sb.toString());
+            et[i]=new Button(this);
+            et[i].setHint("使用"+cityName+"访问");
 
-            bts[i].setText(sb.toString());
-
-            // btParams.width=linearLayout.getWidth()/;
-            bts[i].setOnClickListener(new View.OnClickListener() {
+            btParams.width=450;
+            btParams.height=150;
+            et[i].setBackgroundResource(R.drawable.btn_bg);
+            et[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    CommonVar.trajectory.clear();
-
-                    CommonVar.trajectory.addAll(points);
-
-
-                    Intent intent = new Intent(getApplicationContext(), AMapActivity.class);//打开新activity：
+                    Log.d("js",kvitual_one_city);
+                    Intent intent=new Intent(ChooseVirtualActivity.this,BrowerActivity.class);
+                    intent.putExtra("js",kvitual_one_city);
                     startActivity(intent);
                 }
             });
-            btParams.width = 1000;
-            btParams.height = 600;
-            bts[i].setTextColor(Color.BLACK);
-            bts[i].setWidth(10);
-            bts[i].setLayoutParams(btParams);
-            linearLayout.addView(bts[i]);
+            et[i].setBackgroundColor(Color.WHITE);
+//           et[i].setWidth(10);
+            //  btParams.set;
+            btParams.setMargins(20+600*(i%2), 10+(i/2)*150, 10, 10);
+            et[i].setLayoutParams(btParams);
+            frameLayout.addView(et[i]);
+
         }
 
     }

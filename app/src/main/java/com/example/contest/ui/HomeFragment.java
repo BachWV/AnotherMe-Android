@@ -147,7 +147,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        getKcityName(CommonVar.num_of_k_virtual_city);
+        //getKcityName(CommonVar.num_of_k_virtual_city);
         btn_start_init.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

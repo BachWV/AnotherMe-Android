@@ -176,7 +176,7 @@ public class WriteToFile {
         try {
             JSONObject js=new JSONObject();
             for(int i = 0; i< MappingTools.KvirtualmindisPoint.size(); i++) {
-                String cityName=CommonVar.chosenName.get(i);
+                String cityName=CommonVar.cityNameWithAnchorPoints.get(i).Cityname;
                 JSONObject onevirtualProfile=new JSONObject();
                 JSONArray spArray_of_one_city= new JSONArray();
                 for (StayPointwithType spwt: MappingTools.KvirtualmindisPoint.get(i)) {

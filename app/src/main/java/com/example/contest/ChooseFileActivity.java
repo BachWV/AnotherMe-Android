@@ -28,6 +28,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ChooseFileActivity extends AppCompatActivity {
@@ -49,31 +50,54 @@ public class ChooseFileActivity extends AppCompatActivity {
         LinearLayout.LayoutParams btParams = new  LinearLayout.LayoutParams (ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         for(int i=0;i<files.length;i++){
+            String FILENAME=files[i].getName();
+            if(!FILENAME.contains("时")) continue;
             bts[i]=new Button(getApplicationContext());
             bts[i].setId(3000+ i);
-            bts[i].setText(files[i].getName());
+            bts[i].setHint(files[i].getName());
             File file=files[i];
             // btParams.width=linearLayout.getWidth()/;
             bts[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     FileInputStream in=null;
+                    Intent intent=new Intent(getApplicationContext(), AMapActivity.class);//打开新activity：
 
                     BufferedReader reader=null;
                     try {
                         in = new FileInputStream(file);
                         reader=new BufferedReader(new InputStreamReader(in));
-                        CommonVar.trajectory=WriteToFile.readTrajectFile(reader);
+                        //CommonVar.trajectory=WriteToFile.readTrajectFile(reader);
+                        ArrayList<Point> trajectory=new ArrayList<>(WriteToFile.readTrajectFile(reader));
+
+                        double longituduList[]=new double[trajectory.size()];
+                        double laitiduList[]=new double[trajectory.size()];
+                        long timeList[]=new long[trajectory.size()];
+                        for(int i=0;i<trajectory.size();i++){
+                            longituduList[i]=trajectory.get(i).longitude;
+                            laitiduList[i]=trajectory.get(i).latitude;
+                            timeList[i]=trajectory.get(i).timestamp;
+
+                        }
+//                        Bundle bundle = new Bundle();
+//                        bundle.putSerializable("test", (Serializable)trajectory);
+//                        intent.putExtras(bundle);
+                        intent.putExtra("long",longituduList);
+                        intent.putExtra("lati",laitiduList);
+                        intent.putExtra("time",timeList);
+                        //通过intent传值
+
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-                    Intent intent=new Intent(getApplicationContext(), AMapActivity.class);//打开新activity：
+
                     startActivity(intent);
                 }
             });
             btParams.width=500;
-            btParams.height=140;
-           bts[i].setTextColor(Color.WHITE);
+            btParams.height=150;
+            btParams.leftMargin=150;
+            bts[i].setTextColor(Color.WHITE);
             bts[i].setWidth(10);
             bts[i].setLayoutParams(btParams);
             linearLayout.addView(bts[i]);

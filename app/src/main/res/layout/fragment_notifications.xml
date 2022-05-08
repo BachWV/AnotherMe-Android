@@ -64,9 +64,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
-            android:text="缓存"
+            android:text="虚拟身份浏览器"
             android:textSize="22sp"
-            android:id="@+id/tv_cache"/>
+            android:id="@+id/tv_virtual_brower"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"

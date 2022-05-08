@@ -147,6 +147,7 @@ public class DashboardFragment extends Fragment {
             Log.d("width",mWebView.getWidth()+"");
             btParams.width=1100/(CommonVar.num_of_k_virtual_city +1);
             btParams.height=140;
+
             btn_list[btn_i].setTextColor(Color.WHITE);
             btn_list[btn_i].setWidth(10);
             btn_list[btn_i].setLayoutParams(btParams);

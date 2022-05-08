@@ -21,8 +21,10 @@
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
-
+    <!-- android:allowNativeHeapPointerTagging="false" 用于缓解第二次打开地图时 出现 的bug
+    https://source.android.com/devices/tech/debug/tagged-pointers -->
     <application
+        android:allowNativeHeapPointerTagging="false"
         android:allowBackup="true"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
@@ -32,6 +34,12 @@
         android:theme="@style/Theme.Contest"
         android:usesCleartextTraffic="true"
         tools:ignore="HardcodedDebugMode">
+        <activity
+            android:name=".BrowerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseVirtualActivity"
+            android:exported="false" />
         <activity
             android:name=".ChooseKVirtualActivity"
             android:exported="false" />

@@ -16,6 +16,7 @@ import com.example.contest.AMapActivity;
 import com.example.contest.CheckPermissionsActivity;
 import com.example.contest.ChooseCityActivity;
 import com.example.contest.ChooseFileActivity;
+import com.example.contest.ChooseVirtualActivity;
 import com.example.contest.R;
 import com.example.contest.UserProfileActivity;
 import com.example.contest.Utils.algorithm.TrajectorySimulator.TrajectorySimulator;
@@ -31,6 +32,7 @@ public class settingFragment extends Fragment {
     private TextView tvchoosecity;
     private TextView tvshowmap;
     private TextView tvgetpromission;
+    private TextView tvVirtualBrower;
     public ArrayList<Point> trajectory;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +45,15 @@ public class settingFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         tvgetpromission=getActivity().findViewById(R.id.tv_getPromission);
+        tvVirtualBrower=getActivity().findViewById(R.id.tv_virtual_brower);
+        tvVirtualBrower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(), ChooseVirtualActivity.class);//打开新activity：
+                startActivity(intent);
 
+            }
+        });
 
 
 
