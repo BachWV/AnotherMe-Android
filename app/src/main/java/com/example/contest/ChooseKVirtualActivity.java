@@ -71,7 +71,7 @@ public class ChooseKVirtualActivity extends AppCompatActivity {
                     double longitude=jsonArray.getJSONObject(j).getDouble("longitude");
                     double latitude=jsonArray.getJSONObject(j).getDouble("latitude");
                     String type=jsonArray.getJSONObject(j).getString("type");
-                    points.add(new Point( longitude, latitude));
+                    points.add(new Point(0,longitude, latitude));
 
                     sb.append("经度："+longitude+" 纬度："+latitude+" 类型："+type+"\n");
 
@@ -88,13 +88,25 @@ public class ChooseKVirtualActivity extends AppCompatActivity {
             bts[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    CommonVar.trajectory.clear();
-
-                    CommonVar.trajectory.addAll(points);
-
-
                     Intent intent = new Intent(getApplicationContext(), AMapActivity.class);//打开新activity：
-                    startActivity(intent);
+
+                    ArrayList<Point> trajectory=new ArrayList<>(points);
+
+                    double longituduList[]=new double[trajectory.size()];
+                    double laitiduList[]=new double[trajectory.size()];
+                    long timeList[]=new long[trajectory.size()];
+                    for(int i=0;i<trajectory.size();i++){
+                        longituduList[i]=trajectory.get(i).longitude;
+                        laitiduList[i]=trajectory.get(i).latitude;
+                        timeList[i]=trajectory.get(i).timestamp;
+                    }
+
+                    intent.putExtra("long",longituduList);
+                    intent.putExtra("lati",laitiduList);
+                    intent.putExtra("time",timeList);
+
+
+                     startActivity(intent);
                 }
             });
             btParams.width = 1000;

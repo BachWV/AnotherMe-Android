@@ -47,7 +47,7 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         Log.d("s","onCreateView");
-        ((MainActivity) getActivity()).setActionBarTitle("RV World");
+        ((MainActivity) getActivity()).setActionBarTitle("Another Me");
 
 
         return inflater.inflate(R.layout.fragment_dashboard,container,false);

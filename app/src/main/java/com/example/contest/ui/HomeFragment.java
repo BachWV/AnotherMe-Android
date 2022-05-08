@@ -334,7 +334,6 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d("s", "onResume");
-      //
     }
 
 

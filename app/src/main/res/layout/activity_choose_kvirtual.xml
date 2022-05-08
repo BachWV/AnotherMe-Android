@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:id="@+id/tv_ddd"
-        android:text="dssssdsad"
+        android:text="虚拟身份展示"
+        android:textSize="18pt"
         >
 
 
