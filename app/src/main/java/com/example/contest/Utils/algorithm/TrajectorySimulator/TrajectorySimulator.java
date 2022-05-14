@@ -16,13 +16,10 @@ public class TrajectorySimulator { //输入轨迹点和对应轨迹的POI，输�
     double insertInterval;
     int k_shapeObfuscation;
 
-    private static double getAverageSpeed(ArrayList<Point> points) {
+    private  double getAverageSpeed(ArrayList<Point> points) {
         double averageSpeed = 0;
-        for (int i = 0; i < points.size() - 1; i++) {
-            Point p1 = points.get(i), p2 = points.get(i + 1);
-            double dis = Calculations.getDistFromGeo(p1, p2);
-            long t = p2.timestamp - p1.timestamp; //单位秒
-            averageSpeed += t;
+        for (int i = 0; i < speedSeq.size() - 1; i++) {
+            averageSpeed += speedSeq.get(i);
         }
         return averageSpeed / (points.size() - 1);
     }
@@ -36,8 +33,6 @@ public class TrajectorySimulator { //输入轨迹点和对应轨迹的POI，输�
     }
 
     public ArrayList<Point> trajectorySimulate() {
-        averageSpeed = getAverageSpeed(points);
-
         for (int i = 0; i < points.size()-1; i++) {
             Point p1 = points.get(i), p2 = points.get(i + 1);
             double dis = Calculations.getDistFromGeo(p1, p2);
@@ -47,7 +42,7 @@ public class TrajectorySimulator { //输入轨迹点和对应轨迹的POI，输�
             }
             speedSeq.add(dis / duration);
         }
-
+        averageSpeed = getAverageSpeed(points);
         int transport_type; //出行方式 0步行 1骑行 2驾车
 
         if (averageSpeed < 1.2) {

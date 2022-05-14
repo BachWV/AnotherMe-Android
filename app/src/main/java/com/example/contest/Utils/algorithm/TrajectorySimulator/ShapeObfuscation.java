@@ -36,12 +36,12 @@ public class ShapeObfuscation {
                 p_j[0] = p_hat[0] + j * (p_yn_cart[0] - p_hat[0]) / k; //k平分点位置
                 p_j[1] = p_hat[1] + j * (p_yn_cart[1] - p_hat[1]) / k;
 
+
                 Point rectified = Calculations.Cart2Geo(inflection_point, p_j);
-                trajectory.remove(i);
-                trajectory.add(i, rectified);
+                trajectory.set(i, rectified);
+
             }
-            trajectory.remove(index);
-            trajectory.add(index, Calculations.Cart2Geo(inflection_point, p_hat));
+            trajectory.set(index, Calculations.Cart2Geo(inflection_point, p_hat));
             for (int i = xn; i > index; i--) {
                 double j = i - index;
                 double[] p_j = {0, 0};
@@ -49,8 +49,7 @@ public class ShapeObfuscation {
                 p_j[1] = p_hat[1] + j * (p_xn_cart[1] - p_hat[1]) / k;
 
                 Point rectified = Calculations.Cart2Geo(inflection_point, p_j);
-                trajectory.remove(i);
-                trajectory.add(i, rectified);
+                trajectory.set(i, rectified);
             }
         }
         return trajectory;

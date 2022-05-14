@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class GeographicObfuscation {
     public static ArrayList<Point> geographicObfuscate(ArrayList<Point> points){
         for (Point p :points) {
-            double alpha= Calculations.gaussianRandom(0,0.00001);
+            double alpha= Calculations.gaussianRandom(0,0.000000005);
             double beta=Math.random()*2*Math.PI;
             p.latitude+=alpha*Math.sin(beta);
             p.longitude+=alpha*Math.cos(beta);
