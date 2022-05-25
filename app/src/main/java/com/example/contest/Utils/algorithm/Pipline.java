@@ -41,7 +41,7 @@ public class Pipline {
         try {
             out=context.openFileOutput("profile", Context.MODE_PRIVATE);
             WriteToFile.saveRealPoints(out);
-            Toast.makeText(context,"保存成功",Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"导入成功",Toast.LENGTH_LONG).show();
 
         }catch (Exception e){
             e.printStackTrace();

@@ -13,11 +13,15 @@
         <entry key="..\:/Users/Charon/AndroidStudioProjects/LiJunling/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/Charon/AndroidStudioProjects/LiJunling/app/src/main/res/layout/fragment_notifications.xml" value="0.10552536231884058" />
         <entry key="..\:/Users/Charon/AndroidStudioProjects/LiJunling/app/src/main/res/layout/fragment_second.xml" value="0.10552536231884058" />
+        <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/drawable/btn_bg.xml" value="0.1325" />
+        <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/drawable/btn_bg_press_selector.xml" value="0.1325" />
+        <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/drawable/btn_bg_unpress.xml" value="0.1325" />
         <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/layout/activity_amap.xml" value="0.17889492753623187" />
         <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/layout/activity_brower.xml" value="0.176" />
         <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/layout/activity_choose_city.xml" value="0.15896739130434784" />
         <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/layout/activity_choose_file.xml" value="0.2" />
         <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/layout/activity_choose_kvirtual.xml" value="0.17889492753623187" />
+        <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/layout/activity_choose_lbsactivity.xml" value="0.1" />
         <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/layout/activity_choose_virtual.xml" value="0.15896739130434784" />
         <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/layout/content_scrolling.xml" value="0.1431159420289855" />
         <entry key="..\:/Users/Charon/Desktop/RVWorld/app/src/main/res/layout/fragment_another.xml" value="0.1431159420289855" />

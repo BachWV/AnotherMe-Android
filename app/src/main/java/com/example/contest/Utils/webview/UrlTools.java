@@ -43,22 +43,26 @@ public class UrlTools {
 //        double splong= ((int)(longti*10000))/10000.0;
 //        double splan= ((int)(lanti*10000))/10000.0;
 
-        url=url.replaceAll("&ulocation=.*&ucity=","&ulocation="+lanti+"_"+longti+"&ucity=");
-        url=url.replaceAll("&ulat=.*&ulon","&ulat="+lanti+"&ulon");
-        url=url.replaceAll("&ulon=.*&geo","&ulon="+longti+"&geo");
+            url = url.replaceAll("&ulocation=.*&ucity=", "&ulocation=" + lanti + "_" + longti + "&ucity=");
+            url = url.replaceAll("&ulat=.*&ulon", "&ulat=" + lanti + "&ulon");
+            url = url.replaceAll("&ulon=.*&geo", "&ulon=" + longti + "&geo");
         return url;
     }
 
 
     public static String buildCaiyun(double longti,double lanti){
-
-
         double splong= ((int)(longti*10000))/10000.0;
         double splan= ((int)(lanti*10000))/10000.0;
         String url="";
+        if(CommonVar.lbs_id==0) {
+
+
         Random r=new Random();
 
         url="http://www.caiyunapp.com/wx_share/?"+r.nextInt(100)+"?#"+splong+","+splan+"/";
+        }else if(CommonVar.lbs_id==1){
+            url="https://www.windy.com/"+splan+"/"+splong;
+        }
 
         return url;
     }

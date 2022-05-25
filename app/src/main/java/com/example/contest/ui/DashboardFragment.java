@@ -100,7 +100,7 @@ public class DashboardFragment extends Fragment {
 
         mWebView=(WebView) getActivity().findViewById(R.id.webview_0);
         initWebView();
-        mWebView.loadUrl("https://caiyunapp.com/wx_share/?#116.4020,32.9363");
+        mWebView.loadUrl(UrlTools.buildCaiyun(116.4020,32.9363));
 
         btn_wv_back= getActivity().findViewById(R.id.wv_back);
         btn_wv_foreward= getActivity().findViewById(R.id.wv_foreward);
@@ -118,7 +118,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("forward","ddd");
-                urlload("http://www.caiyunapp.com/wx_share/?#116.4020,39.9363");
+                urlload(UrlTools.buildCaiyun(116.4020,39.9363));
              //   mWebView.loadUrl();
        //   mWebView.goForward();
             }

@@ -26,6 +26,7 @@ import com.example.contest.Utils.algorithm.TrajectorySimulator.TrajectorySimulat
 import com.example.contest.Utils.algorithm.geography.Point;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AMapActivity extends AppCompatActivity {
@@ -42,12 +43,10 @@ public class AMapActivity extends AppCompatActivity {
             setContentView(R.layout.activity_amap);
             relativeLayout = (RelativeLayout) findViewById(R.id.amap);
         Intent intent=getIntent();
-        ArrayList<Point> trajectory=new ArrayList<>();
-
         long time[]=intent.getLongArrayExtra("time");
         double longi[]=intent.getDoubleArrayExtra("long");
         double lanti[]=intent.getDoubleArrayExtra("lati");
-
+ArrayList<Point> trajectory=new ArrayList<>();
         for(int i=0;i<time.length;i++){
             trajectory.add(new Point(time[i],longi[i],lanti[i]));
             Log.d("point",time[i]+" "+longi[i]+" "+lanti[i]);
