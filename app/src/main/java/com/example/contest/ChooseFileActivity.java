@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,16 +43,23 @@ public class ChooseFileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_file);
         tv = findViewById(R.id.tv_file);
-        File[] files =getApplicationContext().getFilesDir().listFiles();
-        for(File file:files){
-            Log.e("filename",file.getName());
+        File dir=getApplicationContext().getFilesDir();
+//去子文件夹找
+        File[] files =dir.listFiles();
+        for(File file1:files){
+            if(file1.getName().equals("trag")){
+                files=file1.listFiles();
+                Log.e("filename",file1.getName());
+            }
+
+
         }
         linearLayout=findViewById(R.id.choosefile_line);
         LinearLayout.LayoutParams btParams = new  LinearLayout.LayoutParams (ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         for(int i=0;i<files.length;i++){
             String FILENAME=files[i].getName();
-            if(!FILENAME.contains("时")) continue;
+
             bts[i]=new Button(getApplicationContext());
             bts[i].setId(3000+ i);
             bts[i].setHint(files[i].getName());

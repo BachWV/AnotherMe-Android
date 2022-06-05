@@ -11,16 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.amap.api.maps.model.LatLng;
-import com.example.contest.AMapActivity;
-import com.example.contest.CheckPermissionsActivity;
 import com.example.contest.ChooseCityActivity;
 import com.example.contest.ChooseFileActivity;
 import com.example.contest.ChooseLBSActivity;
 import com.example.contest.ChooseVirtualActivity;
 import com.example.contest.R;
 import com.example.contest.UserProfileActivity;
-import com.example.contest.Utils.algorithm.TrajectorySimulator.TrajectorySimulator;
 import com.example.contest.Utils.algorithm.geography.Point;
 
 import java.util.ArrayList;
@@ -32,7 +28,6 @@ public class settingFragment extends Fragment {
     private TextView tvuserproflie;
     private TextView tvchoosecity;
     private TextView tvshowmap;
-    private TextView tvgetpromission;
     private TextView tvVirtualBrower;
     private  TextView tvChooseLBS;
     public ArrayList<Point> trajectory;
@@ -46,7 +41,6 @@ public class settingFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        tvgetpromission=getActivity().findViewById(R.id.tv_getPromission);
         tvVirtualBrower=getActivity().findViewById(R.id.tv_virtual_brower);
         tvChooseLBS=getActivity().findViewById(R.id.tv_choose_lbs);
         tvChooseLBS.setOnClickListener(new View.OnClickListener() {
@@ -67,14 +61,6 @@ public class settingFragment extends Fragment {
         });
 
 
-
-        tvgetpromission.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getContext(), CheckPermissionsActivity.class);//打开新activity：
-                startActivity(intent);
-            }
-        });
         tvchoosecity=getActivity().findViewById(R.id.tv_chcity);
         tvchoosecity.setOnClickListener(new View.OnClickListener() {
             @Override

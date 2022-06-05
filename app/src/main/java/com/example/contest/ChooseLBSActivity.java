@@ -12,6 +12,7 @@ import com.example.contest.Common.CommonVar;
 public class ChooseLBSActivity extends AppCompatActivity {
     private Button bt0;
     private Button bt1;
+    private Button bt2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +20,23 @@ public class ChooseLBSActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_lbsactivity);
         bt0=findViewById(R.id.caiyun);
         bt1=findViewById(R.id.windy);
+        bt2=findViewById(R.id.hotwire);
         if(CommonVar.lbs_id==0){
             bt0.setBackgroundResource(R.drawable.btn_bg);
             bt1.setBackgroundResource(R.drawable.btn_bg_unpress);
+            bt2.setBackgroundResource(R.drawable.btn_bg_unpress);
 
 
-        }else {
+        }else if(CommonVar.lbs_id==1){
             bt1.setBackgroundResource(R.drawable.btn_bg);
             bt0.setBackgroundResource(R.drawable.btn_bg_unpress);
+            bt2.setBackgroundResource(R.drawable.btn_bg_unpress);
 
+        }else if(CommonVar.lbs_id==2){
+
+            bt0.setBackgroundResource(R.drawable.btn_bg_unpress);
+            bt1.setBackgroundResource(R.drawable.btn_bg_unpress);
+            bt2.setBackgroundResource(R.drawable.btn_bg);
         }
         bt0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +44,7 @@ public class ChooseLBSActivity extends AppCompatActivity {
                 CommonVar.lbs_id=0;
                 bt0.setBackgroundResource(R.drawable.btn_bg);
                 bt1.setBackgroundResource(R.drawable.btn_bg_unpress);
+                bt2.setBackgroundResource(R.drawable.btn_bg_unpress);
 
             }
         });
@@ -45,6 +55,16 @@ public class ChooseLBSActivity extends AppCompatActivity {
                 CommonVar.lbs_id=1;
                 bt1.setBackgroundResource(R.drawable.btn_bg);
                 bt0.setBackgroundResource(R.drawable.btn_bg_unpress);
+                bt2.setBackgroundResource(R.drawable.btn_bg_unpress);
+            }
+        });
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CommonVar.lbs_id=2;
+                bt1.setBackgroundResource(R.drawable.btn_bg_unpress);
+                bt0.setBackgroundResource(R.drawable.btn_bg_unpress);
+                bt2.setBackgroundResource(R.drawable.btn_bg);
             }
         });
 

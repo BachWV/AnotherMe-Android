@@ -46,8 +46,7 @@ public class UserProfileActivity extends AppCompatActivity {
         virtual_tragectry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(), CheckPermissionsActivity.class);
-                startActivity(intent);
+
 
             }
         });

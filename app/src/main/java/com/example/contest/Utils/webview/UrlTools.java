@@ -62,6 +62,12 @@ public class UrlTools {
         url="http://www.caiyunapp.com/wx_share/?"+r.nextInt(100)+"?#"+splong+","+splan+"/";
         }else if(CommonVar.lbs_id==1){
             url="https://www.windy.com/"+splan+"/"+splong;
+        }else if(CommonVar.lbs_id==2){
+            url="https://www.hotwire.com/hotels/search?destination="+splan+"%2C"+splong+"&rooms=1&adults=2&children=0";
+
+        }else if(CommonVar.lbs_id==3){
+            url="https://m.ctrip.com/webapp/hotels/list?atime=20220525&days=1&ulat="+splan+"&ulon="+splong+"&ulocation="+splan+"_"+longti;
+            
         }
 
         return url;

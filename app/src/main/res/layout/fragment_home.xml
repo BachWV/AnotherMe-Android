@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="30dp"
-            android:text="请调整你想混淆的位置数量"
+            android:text="@string/text_numofvirtual_users"
             android:textSize="20sp"
          ></TextView>
 
@@ -101,7 +101,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="导入轨迹文件"
+            android:text="@string/import_tragectory_file"
             android:textSize="20sp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
@@ -121,7 +121,7 @@
 
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
-            android:text="打开文件"
+            android:text="@string/open_file"
             android:textSize="15sp"
             android:id="@+id/btn_openfile"/>
         <EditText
@@ -134,7 +134,7 @@
             android:textAlignment="center"
             android:textSize="15sp"
             android:maxLines="1"
-            android:text="未选择文件"/>
+            android:text="@string/text_unchoose_file"/>
 
     </LinearLayout>
     <LinearLayout
@@ -149,7 +149,7 @@
 
             android:textSize="15sp"
             android:layout_marginLeft="30dp"
-            android:text="开始初始化"
+            android:text="@string/start_initialization"
             android:id="@+id/start_init"
             ></Button>
 

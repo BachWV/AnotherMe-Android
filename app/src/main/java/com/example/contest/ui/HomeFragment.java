@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
             String line = "";
             String cvsSplitBy = ",";
             reader = getBufferedReader(getContext(), uri);
-            Toast.makeText(getActivity(), "file content:" , Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "getfile" , Toast.LENGTH_LONG).show();
             Pipline.process(reader,getContext());
         } catch (IOException e) {
             e.printStackTrace();
@@ -147,7 +147,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        //getKcityName(CommonVar.num_of_k_virtual_city);
+        getKcityName(CommonVar.num_of_k_virtual_city);
         btn_start_init.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -210,7 +210,7 @@ public class HomeFragment extends Fragment {
                             }
                         pro+=20;
                         progressDialog.setProgress(pro);
-                            Looper.prepare();
+                           // Looper.prepare();
                             //Toast.makeText(getContext(),"成功获取type",Toast.LENGTH_SHORT).show();
                             //get virtual staypoints (mapping)
                             for(int i=0;i<CommonVar.cityNameWithAnchorPoints.size();i++) {
@@ -226,7 +226,7 @@ public class HomeFragment extends Fragment {
 
                         pro+=20;
                         progressDialog.setProgress(pro);
-                            Toast.makeText(getContext(),"成功计算virtual",Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getContext(),"成功计算virtual",Toast.LENGTH_SHORT).show();
 
                             Log.e("pipline", "begin");
 
@@ -242,7 +242,7 @@ public class HomeFragment extends Fragment {
                             //Toast.makeText(getContext(),"成功生成轨迹",Toast.LENGTH_LONG).show();
                         pro+=20;
                         progressDialog.setProgress(pro);
-                    FileOutputStream out = null;
+                        FileOutputStream out = null;
 //                            File externalFilesDir =  Environment.getExternalStorageDirectory();;
 //                            Log.d("gatsby", "externalFilesDirPath->" + externalFilesDir);
 //

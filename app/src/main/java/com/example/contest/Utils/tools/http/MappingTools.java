@@ -101,7 +101,7 @@ public class MappingTools {
         }
         Log.d("mindis", mindis+"");
         Log.d("mindisPoint", mindisPoint + " ");
-        Toast.makeText(mcontext,"mindisPoint"+mindisPoint,Toast.LENGTH_LONG).show();
+        //Toast.makeText(mcontext,"mindisPoint"+mindisPoint,Toast.LENGTH_LONG).show();
         KvirtualmindisPoint.add(mindisPoint);
 
     }

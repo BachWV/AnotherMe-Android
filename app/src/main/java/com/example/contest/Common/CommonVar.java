@@ -23,7 +23,7 @@ public class CommonVar {
     public static ArrayList<Point> points=new ArrayList<>();
     public static ArrayList<StayPointwithType> spwType=new ArrayList<>();
 
-public static int lbs_id=0;
+    public static int lbs_id=0;
     public static ArrayList<Point> trajectory;
 
 }
