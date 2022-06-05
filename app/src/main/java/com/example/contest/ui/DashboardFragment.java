@@ -192,12 +192,7 @@ public class DashboardFragment extends Fragment {
     public String generateReplaceUrl(int i){
         String replaceurl="";
 
-//        if(CommonUrl.url==null) {
-//            CommonUrl.url=Http.buildCaiyun(103.933711, 30.749622);
-//            //return;
-//        }
-//        else {
-//            url=CommonUrl.url;
+
          replaceurl= UrlTools.buildCaiyun(103.933711, 30.749622);
 //        }
         if(i==0){

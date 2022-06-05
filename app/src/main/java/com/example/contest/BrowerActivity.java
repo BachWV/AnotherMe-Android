@@ -16,6 +16,7 @@ import android.widget.EditText;
 
 import com.example.contest.Utils.algorithm.geography.Point;
 import com.example.contest.Utils.webview.InterceptingWebViewClient;
+import com.example.contest.Utils.webview.UrlTools;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,8 +62,6 @@ public class BrowerActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     @Override
@@ -99,12 +98,12 @@ public class BrowerActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-Log.d("cityName",cityName);
+        Log.d("cityName",cityName);
         tv_url=(EditText) findViewById(R.id.text_url_0) ;
 
         mWebView=(WebView) findViewById(R.id.webview_2);
         initWebView();
-        mWebView.loadUrl("https://caiyunapp.com/wx_share/?#"+longitude+","+latitude);
+        mWebView.loadUrl(UrlTools.buildCaiyun(longitude,latitude));
 
         btn_wv_back= findViewById(R.id.wv_back);
         btn_wv_foreward= findViewById(R.id.wv_foreward);
@@ -122,8 +121,6 @@ Log.d("cityName",cityName);
             @Override
             public void onClick(View view) {
                 Log.d("forward","ddd");
-                //urlload("http://www.caiyunapp.com/wx_share/?#116.4020,39.9363");
-                //   mWebView.loadUrl();
                    mWebView.goForward();
             }
         });

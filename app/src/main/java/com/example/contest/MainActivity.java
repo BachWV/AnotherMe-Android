@@ -3,7 +3,6 @@ package com.example.contest;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,11 +27,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.contest.databinding.ActivityMainBinding;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -67,10 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public AMapLocationClient mLocationClient = null;
     public AMapLocationClientOption mLocationOption = null;
     public AMapLocationListener mLocationListener = null;
-    public static ArrayList<Point> trajectory_test;
     private ArrayList<Point> wirteToFileBuffer = new ArrayList<>();
-    FileOutputStream out = null;
-    BufferedWriter writer = null;
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
@@ -111,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 sb.append(",");
                 sb.append(wirteToFileBuffer.get(i).longitude);
                 sb.append("\n");
-//
             }
             wirteToFileBuffer.clear();
             Log.d("content",sb.toString());
@@ -131,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         if(Build.VERSION.SDK_INT > 28
                 && getApplicationContext().getApplicationInfo().targetSdkVersion > 28) {
             needPermissions = new String[] {
@@ -144,8 +136,6 @@ public class MainActivity extends AppCompatActivity {
             needCheckBackLocation = true;
         }
 
-
-
         mLocationClient.updatePrivacyAgree(getApplicationContext(), true);
         mLocationClient.updatePrivacyShow(getApplicationContext(), true, true);
 
@@ -157,8 +147,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 //初始化定位
-
-
 
 
 //设置定位回调监听
@@ -175,45 +163,8 @@ public class MainActivity extends AppCompatActivity {
 
                         } else {
                             saveFile();
-//                            try {
-//                                SimpleDateFormat formatter =new SimpleDateFormat("MM月dd日 HH时");
-//
-//                                long nowtime=System.currentTimeMillis();
-//                                Date curDate=new Date((nowtime));
-//                                String nowFormat=formatter.format(curDate);
-//                                out = openFileOutput(nowFormat, Context.MODE_APPEND);
-//
-//
-//                                writer = new BufferedWriter(new OutputStreamWriter(out));
-//                                for (int i = 0; i < 10; i++) {
-//                                    StringBuffer sb = new StringBuffer();
-//                                    sb.append(wirteToFileBuffer.get(i).timestamp);
-//                                    sb.append(",");
-//                                    sb.append(wirteToFileBuffer.get(i).latitude);
-//                                    sb.append(",");
-//                                    sb.append(wirteToFileBuffer.get(i).longitude);
-//                                    writer.write(sb.toString());
-//                                    writer.newLine();
-//                                    writer.flush();
-//                                    //      writer.close();
-//                                }
- //                           wirteToFileBuffer.clear();
-//
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            } finally {
-//                                try {
-//                                    if (writer != null) {
-//                                        writer.close();
-//                                    }
-//                                } catch (IOException E) {
-//                                    E.printStackTrace();
-//                                }
-//                            }
                             Log.d("write", "add down!");
-
                         }
-
 
                     } else {
                         //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。

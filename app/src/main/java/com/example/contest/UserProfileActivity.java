@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.contest.Common.CommonVar;
-import com.example.contest.Utils.algorithm.geography.Point;
 import com.example.contest.Utils.algorithm.stayPoint.StayPoint;
 import com.example.contest.Utils.algorithm.stayPoint.StayPointwithType;
 import com.example.contest.Utils.file.WriteToFile;
@@ -21,7 +20,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -72,8 +70,6 @@ public class UserProfileActivity extends AppCompatActivity {
 //                        tmp.put("longitude", UseTypeGetsCityPois.KvirtualmindisPoint.get(i).get(i)longitude);
 //                        tmp.put("latitude", UseTypeGetsCityPois.mindisPoint.get(i).latitude);
 //                        tmp.put("type", UseTypeGetsCityPois.mindisPoint.get(i).type);
-//
-
 //                        spArray.put(tmp);
                     }
                     int spnum = CommonVar.sp.size();
