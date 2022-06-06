@@ -103,7 +103,7 @@ public class BrowerActivity extends AppCompatActivity {
 
         mWebView=(WebView) findViewById(R.id.webview_2);
         initWebView();
-        mWebView.loadUrl(UrlTools.buildCaiyun(longitude,latitude));
+        mWebView.loadUrl(UrlTools.buildUrl(longitude,latitude));
 
         btn_wv_back= findViewById(R.id.wv_back);
         btn_wv_foreward= findViewById(R.id.wv_foreward);

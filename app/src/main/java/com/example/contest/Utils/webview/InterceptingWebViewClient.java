@@ -25,10 +25,6 @@ public class InterceptingWebViewClient extends WebViewClient {
 
         Log.d("e222",url);
         tv_url.setText(url);
-        if(UrlTools.ifUrlHasLocation(url)){
-            String locdetail= UrlTools.locationDetails(url);
-            Log.d("detail",locdetail);
-        }
 
 
         super.onPageStarted(view, url, favicon);

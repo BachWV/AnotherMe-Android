@@ -1,6 +1,5 @@
 package com.example.contest.ui;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,7 +61,6 @@ public class DashboardFragment extends Fragment {
 
         mWebSettings.setDomStorageEnabled(true);
 
-
         mWebView.setWebViewClient(new InterceptingWebViewClient(tv_url));
      //   mWebView.setWebViewClient(new WebViewClient());
 
@@ -95,12 +93,11 @@ public class DashboardFragment extends Fragment {
 
 
 
-
         tv_url=(EditText) getActivity().findViewById(R.id.text_url_0) ;
 
         mWebView=(WebView) getActivity().findViewById(R.id.webview_0);
         initWebView();
-        mWebView.loadUrl(UrlTools.buildCaiyun(116.4020,32.9363));
+        mWebView.loadUrl(UrlTools.buildUrl(116.4020,32.9363));
 
         btn_wv_back= getActivity().findViewById(R.id.wv_back);
         btn_wv_foreward= getActivity().findViewById(R.id.wv_foreward);
@@ -118,9 +115,9 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("forward","ddd");
-                urlload(UrlTools.buildCaiyun(116.4020,39.9363));
+               // urlload(UrlTools.buildUrl(116.4020,39.9363));
              //   mWebView.loadUrl();
-       //   mWebView.goForward();
+                if(mWebView.canGoForward()) mWebView.goForward();
             }
         });
         btn_wv_flash.setOnClickListener(new View.OnClickListener() {
@@ -169,11 +166,8 @@ public class DashboardFragment extends Fragment {
                     for (int i1 = 0; i1 < CommonVar.num_of_k_virtual_city + 1; i1++) {
                         btn_list[i1].setTextColor(Color.WHITE);
                     }
-
                     btn_list[btn_ii].setTextColor(Color.BLUE);
                     urlload(url);
-
-                    // Do whatever you want(str can be used here)
 
                 }
             });
@@ -191,27 +185,24 @@ public class DashboardFragment extends Fragment {
     }
     public String generateReplaceUrl(int i){
         String replaceurl="";
-
-
-         replaceurl= UrlTools.buildCaiyun(103.933711, 30.749622);
-//        }
+         replaceurl= UrlTools.buildUrl(103.933711, 30.749622);
         if(i==0){
 
             if(CommonVar.sp!=null&CommonVar.sp.size()!=0){
                 double longitude=CommonVar.sp.get(0).longitude;
                 double latitude=CommonVar.sp.get(0).latitude;
 
-                replaceurl= UrlTools.buildCaiyun(longitude,latitude);
+                replaceurl= UrlTools.buildUrl(longitude,latitude);
             }
             //后台请求虚拟点,不做任何处理
             if (MappingTools.KvirtualmindisPoint != null && MappingTools.KvirtualmindisPoint.size() != 0) {
                 int size = MappingTools.KvirtualmindisPoint.size();
-                Toast.makeText(getContext(), "已发送虚拟请求",Toast.LENGTH_LONG).show();
+               // Toast.makeText(getContext(), "已发送虚拟请求",Toast.LENGTH_LONG).show();
 
                 for(int j=0;j< size;j++) {
                     StayPointwithType ans = MappingTools.KvirtualmindisPoint.get(j).get(0);
                     Toast.makeText(getContext(), "已发送虚拟请求"+ans.longitude+" "+ans.latitude+"",Toast.LENGTH_LONG).show();
-                    String Vurl= UrlTools.buildCaiyun(ans.longitude, ans.latitude);
+                    String Vurl= UrlTools.buildUrl(ans.longitude, ans.latitude);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -223,13 +214,7 @@ public class DashboardFragment extends Fragment {
                         }
                     }).start();
 
-                    // Toast.makeText(view.getContext(), ans.longitude+" "+ans.latitude+"",Toast.LENGTH_LONG).show();
-
                 }
-            } else {
-
-                    replaceurl = UrlTools.buildCaiyun(103.9319, 30.7559);
-                    //Toast.makeText(view.getContext(), ans.longitude+" "+ans.latitude+"",Toast.LENGTH_LONG).show();
             }
 
 
@@ -241,13 +226,13 @@ public class DashboardFragment extends Fragment {
                 if (i  < size) {
                     StayPointwithType ans = MappingTools.KvirtualmindisPoint.get(i).get(0);
 
-                    replaceurl =UrlTools.buildCaiyun(ans.longitude, ans.latitude);
+                    replaceurl =UrlTools.buildUrl(ans.longitude, ans.latitude);
 
                 }
             } else {
                 if(i-1<CommonVar.cityNameWithAnchorPoints.size()) {
                     CityNameWithAnchorPoint ans = CommonVar.cityNameWithAnchorPoints.get(i-1);
-                    replaceurl = UrlTools.buildCaiyun(ans.longitude, ans.latitude);
+                    replaceurl = UrlTools.buildUrl(ans.longitude, ans.latitude);
                     //Toast.makeText(view.getContext(), ans.longitude+" "+ans.latitude+"",Toast.LENGTH_LONG).show();
                 }
             }
@@ -260,8 +245,6 @@ public class DashboardFragment extends Fragment {
 
         return replaceurl;
     }
-
-
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {

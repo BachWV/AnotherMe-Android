@@ -26,6 +26,7 @@ import com.example.contest.Utils.algorithm.Pipline;
 import com.example.contest.ChooseCityActivity;
 import com.example.contest.Utils.algorithm.TrajectorySimulator.TrajectorySimulator;
 import com.example.contest.Utils.algorithm.geography.Point;
+import com.example.contest.Utils.algorithm.stayPoint.GetStayPoint;
 import com.example.contest.Utils.algorithm.stayPoint.StayPoint;
 import com.example.contest.Utils.algorithm.stayPoint.StayPointwithType;
 import com.example.contest.Utils.file.WriteToFile;
@@ -201,6 +202,41 @@ public class HomeFragment extends Fragment {
                         //get staypoints' types
                 try {
                     CommonVar.spwType.clear();
+                    if(CommonVar.sp.size()==0){
+                        //用户没有手动导入
+                        //则读取定位得到的轨迹文件
+                        File dir=getContext().getFilesDir();
+                            //去子文件夹找
+                        File[] files =dir.listFiles();
+                        for(File file1:files){
+                            if(file1.getName().equals("trag")){
+                                files=file1.listFiles();
+                                Log.e("filename",file1.getName());
+                            }
+                        }
+                        ArrayList<Point> trajectory_all_points=new ArrayList<>();
+                        Log.d("size","files.size"+files.length);
+                        for(int i=0;i<files.length;i++) {
+                            String FILENAME = files[i].getName();
+                            File file = files[i];
+                            FileInputStream in=null;
+                            BufferedReader reader=null;
+                            try {
+                                in = new FileInputStream(file);
+                                reader = new BufferedReader(new InputStreamReader(in));
+                                //CommonVar.trajectory=WriteToFile.readTrajectFile(reader);
+                               trajectory_all_points.addAll( new ArrayList<>(WriteToFile.readTrajectFile(reader)));
+
+                            }catch (Exception e){
+                            e.printStackTrace();
+                            }
+
+                        }
+                        ArrayList<StayPoint> stayPoints= GetStayPoint.getStayPoint(trajectory_all_points);
+                        CommonVar.sp.addAll(stayPoints);
+                        Log.d("","Common.sp为空，则添加成功，添加了"+stayPoints.size()+" 个staypoints");
+
+                    }
                         for(int i=0;i<CommonVar.sp.size();i++){
                             StayPoint sp1=CommonVar.sp.get(i);
                                // StayPointwithType spwt=new StayPointwithType(sp1);
@@ -243,47 +279,11 @@ public class HomeFragment extends Fragment {
                         pro+=20;
                         progressDialog.setProgress(pro);
                         FileOutputStream out = null;
-//                            File externalFilesDir =  Environment.getExternalStorageDirectory();;
-//                            Log.d("gatsby", "externalFilesDirPath->" + externalFilesDir);
-//
-//
-//                            String fileName = "0";
-//                            File file = null;
-//                            for (int i = 1; i <= 200; i++) {
-//                                // out=openFileOutput("profile", Context.MODE_PRIVATE);
-//                                file = new File("data/data/com.example.contest/files", fileName);
-//                                if (file.exists()) {
-//                                    fileName = String.valueOf(i);
-//                                } else {
-//                                    break;
-//                                }
-//                            }
-//
-//                            FileOutputStream fos = null;
-//                            try {
-//                                fos = new FileOutputStream(file);
-//
-//                                //获取要写出的文件内容
-//                                StringBuilder content = new StringBuilder();
-//                                for (Point p:CommonVar.trajectory) {
-//                                    content.append(String.valueOf(p.latitude)+","+String.valueOf(p.longitude)+"\n");
-//                                }
-//                                Log.d("string",content.toString());
-//                                fos.write(content.toString().getBytes("UTF-8"));
-//                                if (fos != null) {
-//                                    fos.close();
-//                                }
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-                    try {
+
+
                         out=getContext().openFileOutput("vup", Context.MODE_PRIVATE);
                         WriteToFile.saveKVirtualPoints(out);
 
-
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
 
                             pro+=20;
 

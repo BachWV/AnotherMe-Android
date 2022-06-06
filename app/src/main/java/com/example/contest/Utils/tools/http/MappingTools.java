@@ -137,7 +137,7 @@ public class MappingTools {
         JSONArray p = ele.getJSONArray("pois");
         Log.e("ppp", p.toString());
         ArrayList<StayPointwithType> pointlist=new ArrayList<>();
-        //对于某一个type 我们多获取4个poi，并返回到arraylist里
+        //对于某一个type 我们获取4个poi，并返回到arraylist里
         for (int i = 0; i < 4; i++) {
             String location = p.getJSONObject(i).getString("location");
             String[] splitans = location.split(",");

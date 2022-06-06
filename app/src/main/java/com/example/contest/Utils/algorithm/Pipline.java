@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import com.example.contest.Common.CommonVar;
 import com.example.contest.Utils.algorithm.TrajectorySimulator.TrajectorySimulator;
-import com.example.contest.Utils.algorithm.preprocess.DBSCAN;
 import com.example.contest.Utils.algorithm.geography.Point;
 import com.example.contest.Utils.algorithm.preprocess.CSVReader;
 import com.example.contest.Utils.algorithm.preprocess.Preprocess;
@@ -41,9 +40,11 @@ public class Pipline {
         try {
             out=context.openFileOutput("profile", Context.MODE_PRIVATE);
             WriteToFile.saveRealPoints(out);
-            Toast.makeText(context,"导入成功",Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"保存成功",Toast.LENGTH_SHORT).show();
 
         }catch (Exception e){
+            Toast.makeText(context,"保存失败",Toast.LENGTH_SHORT).show();
+
             e.printStackTrace();
         }
     }

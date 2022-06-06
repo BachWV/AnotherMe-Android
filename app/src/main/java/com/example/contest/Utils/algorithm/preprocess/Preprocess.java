@@ -2,7 +2,7 @@ package com.example.contest.Utils.algorithm.preprocess;
 
 import com.example.contest.Utils.algorithm.preprocess.CSVReader;
 import com.example.contest.Utils.algorithm.geography.Point;
-import com.example.contest.Utils.algorithm.preprocess.DBSCAN;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,8 +17,6 @@ public class Preprocess {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        DBSCAN dbscan=new DBSCAN(points,eps,minPts);
-//        points.removeAll(dbscan.noise);
 
         return points;
     }

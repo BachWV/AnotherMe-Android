@@ -1,38 +1,14 @@
 package com.example.contest.Utils.webview;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 
-import com.example.contest.Common.CommonUrl;
 import com.example.contest.Common.CommonVar;
-import com.example.contest.R;
 
 import java.util.Random;
 
 public class UrlTools {
 
-    public static boolean ifUrlHasLocation(String url){
-
-        if (url.contains("location")) {
-          //  CommonUrl.url=new String(url);
-            return true;
-        }else return false;
-
-    }
-    public static String locationDetails(String url){
-        String loc;
-
-        if (url.contains("ulocation=")) {
-
-            loc=url.substring(url.indexOf("ulocation="),url.indexOf("ulocation=")+30);
-
-          return loc;
-        }
-        return null;
-
-    }
     public static String buildWindyUrl(double longti,double lanti){
         double splong= ((int)(longti*100))/100.0;
         double splan= ((int)(lanti*100))/100.0;
@@ -50,7 +26,7 @@ public class UrlTools {
     }
 
 
-    public static String buildCaiyun(double longti,double lanti){
+    public static String buildUrl(double longti, double lanti){
         double splong= ((int)(longti*10000))/10000.0;
         double splan= ((int)(lanti*10000))/10000.0;
         String url="";
