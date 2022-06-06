@@ -46,7 +46,7 @@ public class AMapActivity extends AppCompatActivity {
         long time[]=intent.getLongArrayExtra("time");
         double longi[]=intent.getDoubleArrayExtra("long");
         double lanti[]=intent.getDoubleArrayExtra("lati");
-ArrayList<Point> trajectory=new ArrayList<>();
+        ArrayList<Point> trajectory=new ArrayList<>();
         for(int i=0;i<time.length;i++){
             trajectory.add(new Point(time[i],longi[i],lanti[i]));
             Log.d("point",time[i]+" "+longi[i]+" "+lanti[i]);
@@ -71,11 +71,9 @@ ArrayList<Point> trajectory=new ArrayList<>();
         }
 
 //设置中心点
-
-
            // aMap.setTrafficEnabled(true);// 显示实时交通状况
             //地图模式可选类型：MAP_TYPE_NORMAL,MAP_TYPE_SATELLITE,MAP_TYPE_NIGHT
-            aMap.setMapType(AMap.MAP_TYPE_BUS);// 卫星地图模式
+            aMap.setMapType(AMap.MAP_TYPE_BUS);// bus地图模式
            // aMap.setMapTextZIndex(1);
 
 //            MyLocationStyle myLocationStyle;

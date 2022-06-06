@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         mLocationOption = new AMapLocationClientOption();
         AMapLocationClientOption option = new AMapLocationClientOption();
         /**
-         * 设置定位场景，目前支持三种场景（签到、出行、运动，默认无场景）
+         * 设置定位场景，目前支持三种场景（签到、出行、运动，默认无场景），设置为运动
          */
         option.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.Sport);
 
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
             mLocationClient.startLocation();
         }
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        mLocationOption.setInterval(3000);
+        mLocationOption.setInterval(5000);
         mLocationOption.setNeedAddress(true);
         mLocationClient.setLocationOption(mLocationOption);
         mLocationClient.startLocation();
