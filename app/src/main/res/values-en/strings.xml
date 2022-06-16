@@ -10,7 +10,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="show_user_profile">Show user profile</string>
+    <string name="update_virtual_user_profile">Update virtual user</string>
     <string name="choose_city">Chooes cities</string>
     <string name="title_activity_choose_file">ChooseFileActivity</string>
     <string name="import_tragectory_file">Import trajectory file</string>
@@ -25,4 +25,5 @@
     <string name="virtual_id_brower">Virtual ID brower</string>
     <string name="caiyun">caiyun weather</string>
     <string name="ctrip">Ctrip</string>
+    <string name="show_user_profile">Show virtual user profile</string>
 </resources>

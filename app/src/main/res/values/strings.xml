@@ -9,7 +9,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="show_user_profile">展示个人Profile</string>
+    <string name="update_virtual_user_profile">更新虚拟用户</string>
     <string name="choose_city">选择城市</string>
     <string name="title_activity_choose_file">ChooseFileActivity</string>
     <string name="import_tragectory_file">导入轨迹文件</string>
@@ -24,6 +24,8 @@
     <string name="virtual_id_brower">虚拟身份浏览器</string>
     <string name="caiyun">彩云天气</string>
     <string name="ctrip">携程</string>
+    <string name="show_user_profile">展示虚拟用户画像</string>
+
 
 
 </resources>

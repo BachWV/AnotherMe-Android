@@ -27,6 +27,7 @@ import java.nio.file.OpenOption;
 import java.util.ArrayList;
 
 public class WriteToFile {
+
     public static ArrayList<Point> readTrajectFile(BufferedReader reader) throws IOException {
         String line = "";
         ArrayList<Point> points = new ArrayList<Point>(); //保存文件中所有坐标点
@@ -160,17 +161,11 @@ public class WriteToFile {
             e.printStackTrace();
         }
         // Log.d("show data",name);
-
-
         return ans;
 
     }
     public static void saveKVirtualPoints(FileOutputStream out){
         BufferedWriter writer=null;
-
-
-
-
         JSONArray KvirtualProfile=new JSONArray();
 
         try {

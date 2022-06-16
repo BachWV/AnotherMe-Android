@@ -12,54 +12,58 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+<!--        <Button-->
+<!--            android:layout_marginLeft="50dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="60dp"-->
+
+<!--         android:text="savedata"-->
+<!--            android:id="@+id/savedata"-->
+
+<!--            ></Button>-->
+
         <Button
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-
-         android:text="savedata"
-            android:id="@+id/savedata"
-
-            ></Button>
-
-        <Button
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_marginTop="30dp"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
 
-            android:text="showdata"
+            android:text="@string/show_user_profile"
             android:id="@+id/showdata"
 
             ></Button>
 
         <Button
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_marginTop="30dp"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
 
-            android:text="获取type"
+            android:text="获取兴趣点类型"
             android:id="@+id/getType"
 
             ></Button>
 
         <Button
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_marginTop="30dp"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
 
-            android:text="获取virtual"
+            android:text="获取虚拟点"
             android:id="@+id/getvirtual"
 
             ></Button>
 
         <Button
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_marginTop="30dp"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
 
             android:text="计算虚拟点"
@@ -67,9 +71,10 @@
 
             ></Button>
         <Button
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_marginTop="30dp"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
 
             android:text="保存虚拟点"
@@ -77,9 +82,10 @@
 
             ></Button>
         <Button
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_marginTop="30dp"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
 
             android:text="虚拟轨迹生成"
