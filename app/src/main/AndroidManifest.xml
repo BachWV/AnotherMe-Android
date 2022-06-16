@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.contest">
-    <uses-sdk
-        android:targetSdkVersion="29" />
     <!-- 用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 用于访问GPS定位 -->
@@ -88,7 +86,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="82a050fa1e818b85d24a06a1cd2cb01e">
-            //开发者申请的key
+<!--            开发者申请的key-->
         </meta-data>
     </application>
 

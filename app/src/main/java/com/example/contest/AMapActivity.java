@@ -56,7 +56,7 @@ public class AMapActivity extends AppCompatActivity {
             if(trajectory!=null&&trajectory.size()!=0){
 
 
-                Point p=trajectory.get(0);
+                Point p=trajectory.get(1);
                 LatLng startPosition=new LatLng(p.latitude,p.longitude);
                 LUJIAZUI=new CameraPosition.Builder()
                         .target(startPosition).zoom(18).bearing(0).tilt(30).build();
