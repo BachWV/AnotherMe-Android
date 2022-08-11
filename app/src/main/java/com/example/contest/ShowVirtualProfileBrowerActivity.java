@@ -12,11 +12,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.example.contest.Common.CommonVar;
 import com.example.contest.Utils.algorithm.geography.Point;
-import com.example.contest.Utils.button.buttonCityOnClickListener;
 import com.example.contest.Utils.file.WriteToFile;
-import com.example.contest.Utils.tools.http.MappingTools;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,22 +25,20 @@ import java.util.ArrayList;
 /**
  * 打开浏览器
  * */
-public class ChooseVirtualActivity extends AppCompatActivity {
+public class ShowVirtualProfileBrowerActivity extends AppCompatActivity {
     private Button[] et=new Button[16];
     private FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_virtual);
-
+        setContentView(R.layout.activity_show_virtual_profile_brower);
+        getSupportActionBar().setTitle(R.string.virtual_id_brower);
         frameLayout=findViewById(R.id.linearChooseProfile);
 
         FileInputStream in=null;
         //读取vup文件实时初始化
         ArrayList<String> kvirtual=new ArrayList<>();
         try {
-
-
             in=openFileInput("vup");
             kvirtual= WriteToFile.showVirtulPoints(in);
             Log.d("kvirtual",kvirtual.toString());
@@ -90,7 +85,7 @@ public class ChooseVirtualActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Log.d("js",kvitual_one_city);
-                    Intent intent=new Intent(ChooseVirtualActivity.this,BrowerActivity.class);
+                    Intent intent=new Intent(ShowVirtualProfileBrowerActivity.this,BrowerActivity.class);
                     intent.putExtra("js",kvitual_one_city);
                     startActivity(intent);
                 }
@@ -98,7 +93,7 @@ public class ChooseVirtualActivity extends AppCompatActivity {
             et[i].setBackgroundColor(Color.WHITE);
 //           et[i].setWidth(10);
             //  btParams.set;
-            btParams.setMargins(20+600*(i%2), 10+(i/2)*150, 10, 10);
+            btParams.setMargins(90+500*(i%2), 10+(i/2)*150, 10, 10);
             et[i].setLayoutParams(btParams);
             frameLayout.addView(et[i]);
 

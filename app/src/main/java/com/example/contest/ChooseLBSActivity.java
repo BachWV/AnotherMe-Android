@@ -21,6 +21,7 @@ public class ChooseLBSActivity extends AppCompatActivity {
         bt0=findViewById(R.id.caiyun);
         bt1=findViewById(R.id.windy);
         bt2=findViewById(R.id.hotwire);
+        getSupportActionBar().setTitle(R.string.text_Choose_lbs_provider);
         if(CommonVar.lbs_id==0){
             bt0.setBackgroundResource(R.drawable.btn_bg);
             bt1.setBackgroundResource(R.drawable.btn_bg_unpress);

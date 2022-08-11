@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Charon/Desktop/code/RVWorld/app/src/main/res/drawable/btn_bg_unpress.xml" value="0.22" />
+        <entry key="..\:/Users/Charon/Desktop/code/RVWorld/app/src/main/res/layout/activity_choose_city.xml" value="0.21302083333333333" />
+        <entry key="..\:/Users/Charon/Desktop/code/RVWorld/app/src/main/res/layout/activity_choose_file.xml" value="0.2871376811594203" />
+        <entry key="..\:/Users/Charon/Desktop/code/RVWorld/app/src/main/res/layout/activity_choose_kvirtual.xml" value="0.2871376811594203" />
+        <entry key="..\:/Users/Charon/Desktop/code/RVWorld/app/src/main/res/layout/activity_choose_lbsactivity.xml" value="0.2" />
+        <entry key="..\:/Users/Charon/Desktop/code/RVWorld/app/src/main/res/layout/activity_choose_virtual.xml" value="0.2871376811594203" />
+        <entry key="..\:/Users/Charon/Desktop/code/RVWorld/app/src/main/res/layout/activity_main.xml" value="0.2871376811594203" />
+        <entry key="..\:/Users/Charon/Desktop/code/RVWorld/app/src/main/res/layout/activity_show_virtual_trajectory.xml" value="0.20697463768115942" />
+        <entry key="..\:/Users/Charon/Desktop/code/RVWorld/app/src/main/res/layout/activity_user_profile.xml" value="0.2871376811594203" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

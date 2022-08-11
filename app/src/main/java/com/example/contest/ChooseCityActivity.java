@@ -28,6 +28,7 @@ public static int leastnum;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_city);//引用布局
+        getSupportActionBar().setTitle(R.string.choose_city);
         linearChooseCity=findViewById(R.id.linearChooseCity);
         CommonVar.chosenName.clear();
 
@@ -48,7 +49,7 @@ public static int leastnum;
             et[i].setBackgroundColor(Color.WHITE);
 //           et[i].setWidth(10);
           //  btParams.set;
-            btParams.setMargins(20+600*(i%2), 10+(i/2)*150, 10, 10);
+            btParams.setMargins(90+500*(i%2), 10+(i/2)*150, 10, 10);
             et[i].setLayoutParams(btParams);
             linearChooseCity.addView(et[i]);
 

@@ -5,21 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.contest.Common.CommonVar;
-import com.example.contest.Utils.algorithm.TrajectorySimulator.TrajectorySimulator;
 import com.example.contest.Utils.algorithm.geography.Point;
 import com.example.contest.Utils.algorithm.stayPoint.StayPoint;
 import com.example.contest.Utils.file.WriteToFile;
 import com.example.contest.Utils.tools.http.MappingTools;
 import com.example.contest.ui.HomeFragment;
 
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -40,16 +36,43 @@ public class UserProfileActivity extends AppCompatActivity {
         virtual_tragectry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<Point> pois = new ArrayList<Point>();
-                for (StayPoint stayPoint : MappingTools.KvirtualmindisPoint.get(0)) {
-                    pois.add(Point.phrasePoint(stayPoint));
-                }
-                ArrayList<Point> points=CommonVar.points;
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ArrayList<Point> pois = new ArrayList<Point>();
+//                        for (StayPoint stayPoint : MappingTools.KvirtualmindisPoint.get(0)) {
+//                            pois.add(Point.phrasePoint(stayPoint));
+//                        }
+//                        ArrayList<Point> points=CommonVar.points;
+//
+//                        TrajectorySimulator simulator = new TrajectorySimulator(points, pois,60,2);
+//                        CommonVar.trajectory= simulator.trajectorySimulate();
+//                        Log.e("pipline", "end");
+//                        Toast.makeText(getApplicationContext(),"成功生成轨迹",Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                }).start();
+                Intent intent = new Intent(getApplicationContext(), AMapActivity.class);//打开新activity：
 
-                TrajectorySimulator simulator = new TrajectorySimulator(points, pois,60,2);
-                CommonVar.trajectory= simulator.trajectorySimulate();
-                Log.e("pipline", "end");
-                Toast.makeText(getApplicationContext(),"成功生成轨迹",Toast.LENGTH_SHORT).show();
+                ArrayList<Point> trajectory=new ArrayList<>(CommonVar.trajectory);
+
+                double longituduList[]=new double[trajectory.size()];
+                double laitiduList[]=new double[trajectory.size()];
+                long timeList[]=new long[trajectory.size()];
+                for(int i=0,j=0;i<trajectory.size();i++){
+                    if(Double.isNaN(trajectory.get(i).longitude)) continue;
+                    longituduList[j]=trajectory.get(i).longitude;
+                    laitiduList[j]=trajectory.get(i).latitude;
+                    timeList[j]=trajectory.get(i).timestamp;
+                    j++;
+                }
+
+                intent.putExtra("long",longituduList);
+                intent.putExtra("lati",laitiduList);
+                intent.putExtra("time",timeList);
+
+
+                startActivity(intent);
 
 
             }
@@ -118,7 +141,7 @@ public class UserProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //展示虚拟用户画像
-                Intent intent=new Intent(getApplicationContext(), ChooseKVirtualActivity.class);
+                Intent intent=new Intent(getApplicationContext(), ShowVirtualProfileActivity.class);
                 startActivity(intent);
               }
         });

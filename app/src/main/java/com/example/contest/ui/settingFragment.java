@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.contest.ChooseCityActivity;
 import com.example.contest.ChooseFileActivity;
 import com.example.contest.ChooseLBSActivity;
-import com.example.contest.ChooseVirtualActivity;
+import com.example.contest.ShowVirtualProfileBrowerActivity;
 import com.example.contest.R;
 import com.example.contest.UserProfileActivity;
 import com.example.contest.Utils.algorithm.geography.Point;
@@ -54,7 +54,7 @@ public class settingFragment extends Fragment {
         tvVirtualBrower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), ChooseVirtualActivity.class);//打开新activity：
+                Intent intent=new Intent(getContext(), ShowVirtualProfileBrowerActivity.class);//打开新activity：
                 startActivity(intent);
 
             }

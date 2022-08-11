@@ -8,11 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.contest.Common.CommonVar;
 import com.example.contest.Utils.algorithm.geography.Point;
 import com.example.contest.Utils.file.WriteToFile;
 
@@ -20,24 +18,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class ChooseKVirtualActivity extends AppCompatActivity {
+public class ShowVirtualProfileActivity extends AppCompatActivity {
 
-    private TextView tv;
     private TextView[] bts = new TextView[10];
     private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_kvirtual);
-        tv = findViewById(R.id.tv_ddd);
-
+        setContentView(R.layout.activity_show_virtual_profile);
+        getSupportActionBar().setTitle(R.string.show_user_profile);
         linearLayout = findViewById(R.id.choosekv_line);
         LinearLayout.LayoutParams btParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 

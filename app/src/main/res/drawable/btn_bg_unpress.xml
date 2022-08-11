@@ -3,7 +3,7 @@
     <!-- 背景色 -->
     <solid android:color="#00000000"/>
     <!-- 边框色 -->
-    <stroke android:width="0.5dip" android:color="#f00" />
+    <stroke android:width="0.5dip" android:color="#0084ff" />
 <!--   <solid android:color="@color/black" />&lt;!&ndash; 背景填充颜色 &ndash;&gt;-->
 <!--    <stroke android:width="3dp" android:color="@color/gray" />&lt;!&ndash; 描边，边框宽度、颜色 &ndash;&gt;-->
     <corners android:radius="10dp" /><!-- 边角圆弧的半径 -->

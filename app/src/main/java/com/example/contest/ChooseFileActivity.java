@@ -43,6 +43,7 @@ public class ChooseFileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_file);
         tv = findViewById(R.id.tv_file);
+        getSupportActionBar().setTitle(R.string.text_show_trajectory);
         File dir=getApplicationContext().getFilesDir();
 //去子文件夹找
         File[] files =dir.listFiles();
@@ -105,6 +106,7 @@ public class ChooseFileActivity extends AppCompatActivity {
             btParams.width=500;
             btParams.height=150;
             btParams.leftMargin=150;
+            bts[i].setBackgroundResource(R.drawable.btn_bg_unpress);
             bts[i].setTextColor(Color.WHITE);
             bts[i].setWidth(10);
             bts[i].setLayoutParams(btParams);
